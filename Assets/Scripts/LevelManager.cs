@@ -4,45 +4,24 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject tile;
-    [SerializeField]
-    private int screenRatioX;
-    [SerializeField]
-    private int screenRatioY;
+    //properties
+    public Dictionary<Pointer, TileScript> Tiles { get; set; }
+    public int num = 12;
 
-    public float Tilesize
+
+    private void Awake()
     {
-        get { return tile.GetComponent<SpriteRenderer>().sprite.bounds.size.x ;}
+        Tiles = new Dictionary<Pointer, TileScript>();
     }
-
     // Start is called before the first frame update
     void Start()
     {
-        CreateLevel();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    private void CreateLevel()
-    {
-        Vector3 worldStart = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
-        for (int y = 0; y < screenRatioY; y++)
-        {
-            for (int x = 0; x < screenRatioX; x++)
-            {
-                PlaceTile(x,y,worldStart);
-            }
-        }
-    }
-
-    private void PlaceTile(int x , int y, Vector3 worldStart)
-    {
-        GameObject newTile = Instantiate(tile);
-        newTile.transform.position = new Vector3(worldStart.x + Tilesize * x, worldStart.y - Tilesize * y);
+        
     }
 }
