@@ -77,6 +77,8 @@ public class TileScript : MonoBehaviour
             Instantiate(GameManager.Instance.ClickedBtn.TowerPrefab, transform.position, Quaternion.identity);
             GameManager.Instance.BuyTower(GameManager.Instance.ClickedBtn);
             IsBuildable = false;
+              //*************DELETE
+            IsWalkable = false;
     }
 
 

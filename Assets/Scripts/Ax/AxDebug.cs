@@ -22,7 +22,7 @@ public class AxDebug : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Ax.GetPath(spawn.GridPosition);
+            Ax.GetPath(spawn.GridPosition, goal.GridPosition);
         }
     }
 
@@ -55,11 +55,23 @@ public class AxDebug : MonoBehaviour
     }
 
 
-    public void DebugPath(HashSet<Node> openList)
+    public void DebugPath(HashSet<Node> openList, HashSet<Node> closedList)
     {
         foreach(Node node in openList)
         {
-            node.TileRef.SpriteRenderer.color = Color.cyan;
+            if (node.TileRef != spawn && node.TileRef != goal)
+            {
+                node.TileRef.SpriteRenderer.color = Color.cyan;
+            }
+
+        }
+        foreach (Node node in closedList)
+        {
+            if (node.TileRef != spawn && node.TileRef != goal)
+            {
+                node.TileRef.SpriteRenderer.color = Color.yellow;
+            }
+
         }
     }
 }

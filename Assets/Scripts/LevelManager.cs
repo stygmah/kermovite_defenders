@@ -6,7 +6,7 @@ public class LevelManager : Singleton<LevelManager>
 {
     //properties
     public Dictionary<Pointer, TileScript> Tiles { get; set; }
-    public int num = 12;
+
 
 
     private void Awake()
