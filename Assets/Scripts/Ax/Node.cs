@@ -8,6 +8,7 @@ public class Node
 
     public Pointer GridPosition { get; set; }
     public TileScript TileRef { get; private set; }
+    public Vector2 WorldPosition { get; private set; }
     public Node Parent { get; set; }
     public int G { get; set; }
     public int H { get; set; }
@@ -17,6 +18,8 @@ public class Node
     {
         this.TileRef = tileRef;
         this.GridPosition = tileRef.GridPosition;
+        //MAYBE ERRORS DOWN
+        this.WorldPosition = new Vector2(tileRef.GridPosition.X, tileRef.GridPosition.Y);
     }
 
     public void CalcValues(Node parent, Node goal, int gCost)

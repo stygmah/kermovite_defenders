@@ -5,6 +5,11 @@ using UnityEngine.EventSystems;
 
 public class TileScript : MonoBehaviour
 {
+    //setup props
+    [SerializeField]
+    private bool walkable;
+    [SerializeField]
+    private bool buildable;
 
     //todelete
     public bool Debugging { get; set; }
@@ -39,8 +44,9 @@ public class TileScript : MonoBehaviour
     // Setup
     private void Setup()
     {
-        IsBuildable = true;
-        IsWalkable = true;
+        IsBuildable = buildable;
+        IsWalkable = walkable;
+
     }
 
 

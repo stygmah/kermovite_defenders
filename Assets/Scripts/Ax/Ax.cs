@@ -18,7 +18,7 @@ public static class Ax
         }
     }
 
-    public static void GetPath(Pointer spawn, Pointer goal)
+    public static Stack<Node> GetPath(Pointer spawn, Pointer goal)
     {
 
         if(nodes == null)
@@ -108,12 +108,9 @@ public static class Ax
                 break;
             }
         }
-
-
-
-
+        return finalPath;
         /****TO REMOVE LATER***/
-        GameObject.Find("Debug").GetComponent<AxDebug>().DebugPath(openList, closedList);
+        //GameObject.Find("Debug").GetComponent<AxDebug>().DebugPath(openList, closedList);
     }
     private static bool IsDiagonal(Node currentNode, Node neighbour)
     {

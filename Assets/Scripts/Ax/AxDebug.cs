@@ -18,12 +18,12 @@ public class AxDebug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ClickTile();
+        //ClickTile();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Ax.GetPath(spawn.GridPosition, goal.GridPosition);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Ax.GetPath(spawn.GridPosition, goal.GridPosition);
+        //}
     }
 
     private void ClickTile()

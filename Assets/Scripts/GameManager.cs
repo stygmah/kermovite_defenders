@@ -10,7 +10,20 @@ public class GameManager : Singleton<GameManager>
     private Text moneyText;
     public TowerBtn ClickedBtn { get; set; }
     public int Money;
+    public ObjectPool Pool { get; set; }
+    /// <summary>
+    /// Changle later for wave
+    /// </summary>
+    [SerializeField]
+    private GameObject creep;
+    private Creep nextCreep;
 
+
+    private void Awake()
+    {
+        Pool = GetComponent<ObjectPool>();
+        nextCreep = creep.GetComponent<Creep>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +64,19 @@ public class GameManager : Singleton<GameManager>
     private void ChangeMoneyText(int quantity)
     {
         moneyText.text = "$" + quantity;
+    }
+
+    public void NextWave()
+    {
+        StartCoroutine(SpawnWave());
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        LevelManager.Instance.GeneratePath();
+        Creep thisCreep = Instantiate(nextCreep);
+        thisCreep.Spawn();
+
+        yield return new WaitForSeconds(2.5f);
     }
 }

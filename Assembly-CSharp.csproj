@@ -63,11 +63,14 @@
     <Compile Include="Assets\Scripts\Ax\Ax.cs" />
     <Compile Include="Assets\Scripts\Ax\AxDebug.cs" />
     <Compile Include="Assets\Scripts\Ax\Node.cs" />
+    <Compile Include="Assets\Scripts\Creep.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Hover.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\TileScript.cs" />
     <Compile Include="Assets\Scripts\TowerBtn.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
