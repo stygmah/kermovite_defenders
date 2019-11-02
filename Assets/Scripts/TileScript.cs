@@ -78,7 +78,10 @@ public class TileScript : MonoBehaviour
         }
     }
 
-
+    private void OnMouseExit()
+    {
+        SpriteRenderer.color = Color.white;
+    }
 
     //Private functions
     private void PlaceTower()

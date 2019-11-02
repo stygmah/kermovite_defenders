@@ -20,9 +20,9 @@ public class Range : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision);
-        if(collision.tag == "creep")
+        if(collision.tag == "critter")
         {
+            Debug.Log(collision.GetInstanceID());
             if (target != null)
             {
                 killList.Enqueue(collision.GetComponent<Creep>());
@@ -35,7 +35,7 @@ public class Range : MonoBehaviour
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "creep")
+        if (collision.tag == "critter")
         {
             if (killList.Count > 0)
             {
@@ -46,6 +46,10 @@ public class Range : MonoBehaviour
                 target = null;
             }
         }
+    }
+    public void CritterDead()
+    {
+        target = killList.Dequeue();
     }
 
 }
