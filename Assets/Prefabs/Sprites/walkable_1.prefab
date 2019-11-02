@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkable: 1
-  buildable: 1
+  buildable: 0
   Level: {fileID: 0}
 --- !u!61 &6081766323292906319
 BoxCollider2D:

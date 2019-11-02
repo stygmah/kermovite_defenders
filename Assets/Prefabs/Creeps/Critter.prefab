@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8546754584187705872}
   m_Layer: 0
   m_Name: Critter
-  m_TagString: Untagged
+  m_TagString: critter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

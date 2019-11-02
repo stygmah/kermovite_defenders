@@ -11,15 +11,16 @@ public class TileScript : MonoBehaviour
     [SerializeField]
     private bool buildable;
 
-    //todelete
-    public bool Debugging { get; set; }
 
     public Pointer GridPosition { get; set; }
     public bool IsBuildable { get; set; }
     public bool IsWalkable { get; set; }
 
-
+    private Tower tower;
+    private Range range;
     private Color32 forbiddenColor = new Color32(255, 50, 50, 255);
+    private Color32 rangeColor = new Color32(0,255,22,29);
+    private Color32 transparent = new Color32(0, 0, 0, 0);
     public SpriteRenderer SpriteRenderer { get; set; }
 
 
@@ -64,14 +65,16 @@ public class TileScript : MonoBehaviour
             {
                 PlaceTower();
             }
-        }
-    }
-    private void OnMouseExit()
-    {
-        //DELETE IF STATEMENT
-        if (!Debugging)
+        }else if (!EventSystem.current.IsPointerOverGameObject() && GameManager.Instance.ClickedBtn == null && Input.GetMouseButtonDown(0))
         {
-            SpriteRenderer.color = Color.white;
+            if (tower != null)
+            {
+                GameManager.Instance.SelectTower(tower);
+            }
+            else
+            {
+                GameManager.Instance.DeselectTower();
+            }
         }
     }
 
@@ -80,9 +83,12 @@ public class TileScript : MonoBehaviour
     //Private functions
     private void PlaceTower()
     {
-            Instantiate(GameManager.Instance.ClickedBtn.TowerPrefab, transform.position, Quaternion.identity);
+            tower = Instantiate(GameManager.Instance.ClickedBtn.TowerPrefab, transform.position, Quaternion.identity).GetComponent<Tower>();
+            range = tower.transform.GetChild(0).GetComponent<Range>();
+            
             GameManager.Instance.BuyTower(GameManager.Instance.ClickedBtn);
             IsBuildable = false;
+            
               //*************DELETE
             IsWalkable = false;
     }

@@ -8,8 +8,16 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField]
     private Text moneyText;
-    public TowerBtn ClickedBtn { get; set; }
+    [SerializeField]
+    private Text healthText;
     public int Money;
+    public int Health;
+
+
+    private bool gameOver = false;
+
+    public TowerBtn ClickedBtn { get; set; }
+
     public ObjectPool Pool { get; set; }
     /// <summary>
     /// Changle later for wave
@@ -17,6 +25,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject creep;
     private Creep nextCreep;
+    [SerializeField]
+    private GameObject gameOverMenu;
+
+    private Tower selectedTower;
 
 
     private void Awake()
@@ -29,6 +41,8 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         ChangeMoneyText(Money);
+        ChangeHealthText(Health);
+        gameOverMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -65,6 +79,10 @@ public class GameManager : Singleton<GameManager>
     {
         moneyText.text = "$" + quantity;
     }
+    private void ChangeHealthText(int quantity)
+    {
+        healthText.text = quantity.ToString();
+    }
 
     public void NextWave()
     {
@@ -78,5 +96,33 @@ public class GameManager : Singleton<GameManager>
         thisCreep.Spawn();
 
         yield return new WaitForSeconds(2.5f);
+    }
+    public void LoseLife()
+    {
+        Health--;
+        ChangeHealthText(Health);
+    }
+    public void GameOver()
+    {
+        gameOver = true;
+        gameOverMenu.SetActive(true);
+    }
+
+    public void SelectTower(Tower tower)
+    {
+        if(selectedTower != null)
+        {
+            DeselectTower();
+        }
+        selectedTower = tower;
+        selectedTower.Select();
+    }
+    public void DeselectTower()
+    {
+        if (selectedTower != null)
+        {
+            selectedTower.Select();
+        }
+        selectedTower = null;
     }
 }

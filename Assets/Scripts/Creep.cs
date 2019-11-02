@@ -58,8 +58,15 @@ public class Creep : MonoBehaviour
     {
         if (collision.tag== "goal")
         {
-            Debug.Log("*");
             Destroy(gameObject);
+            if (GameManager.Instance.Health>0)
+            {
+                GameManager.Instance.LoseLife();
+            }
+            if (GameManager.Instance.Health == 0)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
     }
 }

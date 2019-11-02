@@ -6,7 +6,9 @@ public class Hover : Singleton<Hover>
 {
 
     private SpriteRenderer spriteRenderer;
+    private SpriteRenderer rangeSpriteRenderer;
     // Start is called before the first frame update
+
     void Start()
     {
         this.spriteRenderer = GetComponent<SpriteRenderer>();
