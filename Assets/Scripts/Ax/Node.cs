@@ -18,7 +18,6 @@ public class Node
     {
         this.TileRef = tileRef;
         this.GridPosition = tileRef.GridPosition;
-        //MAYBE ERRORS DOWN
         this.WorldPosition = new Vector2(tileRef.GridPosition.X, tileRef.GridPosition.Y);
     }
 

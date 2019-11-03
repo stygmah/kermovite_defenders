@@ -11,6 +11,8 @@ public class Creep : MonoBehaviour
     private Vector3 destination;
     [SerializeField]
     private int health;
+    [SerializeField]
+    public int money;
 
 
 

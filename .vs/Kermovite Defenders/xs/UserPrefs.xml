@@ -1,13 +1,16 @@
 ﻿<Properties StartupConfiguration="{64378BB7-BD05-35FE-AEB3-4FFBF6F672F6}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Hover.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Ax/Node.cs">
     <Files>
-      <File FileName="Assets/Scripts/TileScript.cs" Line="86" Column="141" />
-      <File FileName="Assets/Scripts/Range.cs" Line="40" Column="38" />
-      <File FileName="Assets/Scripts/Tower.cs" Line="44" Column="10" />
-      <File FileName="Assets/Scripts/Projectile.cs" Line="30" Column="36" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="89" Column="37" />
-      <File FileName="Assets/Scripts/Creep.cs" Line="90" Column="10" />
-      <File FileName="Assets/Scripts/Hover.cs" Line="33" Column="6" />
+      <File FileName="Assets/Scripts/TileScript.cs" Line="83" Column="43" />
+      <File FileName="Assets/Scripts/Range.cs" Line="52" Column="1" />
+      <File FileName="Assets/Scripts/Tower.cs" Line="8" Column="11" />
+      <File FileName="Assets/Scripts/Projectile.cs" Line="10" Column="24" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="129" Column="18" />
+      <File FileName="Assets/Scripts/Creep.cs" Line="87" Column="29" />
+      <File FileName="Assets/Scripts/Hover.cs" Line="37" Column="27" />
+      <File FileName="Assets/Scripts/Ax/Ax.cs" Line="111" Column="26" />
+      <File FileName="Assets/Scripts/Ax/AxDebug.cs" Line="25" Column="19" />
+      <File FileName="Assets/Scripts/Ax/Node.cs" Line="21" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

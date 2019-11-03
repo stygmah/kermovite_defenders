@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Ax\Ax.cs" />
-    <Compile Include="Assets\Scripts\Ax\AxDebug.cs" />
     <Compile Include="Assets\Scripts\Ax\Node.cs" />
     <Compile Include="Assets\Scripts\Creep.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />

@@ -109,8 +109,6 @@ public static class Ax
             }
         }
         return finalPath;
-        /****TO REMOVE LATER***/
-        //GameObject.Find("Debug").GetComponent<AxDebug>().DebugPath(openList, closedList);
     }
     private static bool IsDiagonal(Node currentNode, Node neighbour)
     {
