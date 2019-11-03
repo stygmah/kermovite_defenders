@@ -49,7 +49,14 @@ public class Range : MonoBehaviour
     }
     public void CritterDead()
     {
-        target = killList.Dequeue();
+        if (killList.Count > 0)
+        {
+            target = killList.Dequeue();
+        }
+        else
+        {
+            target = null;
+        }
     }
 
 }

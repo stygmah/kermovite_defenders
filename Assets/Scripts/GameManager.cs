@@ -15,6 +15,7 @@ public class GameManager : Singleton<GameManager>
 
 
     private bool gameOver = false;
+    public bool paused = false;
 
     public TowerBtn ClickedBtn { get; set; }
 
@@ -124,5 +125,18 @@ public class GameManager : Singleton<GameManager>
             selectedTower.Select();
         }
         selectedTower = null;
+    }
+    public void Pause()
+    {
+        if (paused)
+        {
+            Time.timeScale = 1;
+            paused = false;
+        }
+        else
+        {
+            Time.timeScale = 0;
+            paused = true;
+        }
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - goal
   - critter
+  - projectile
   layers:
   - Default
   - TransparentFX
