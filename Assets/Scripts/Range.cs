@@ -37,26 +37,12 @@ public class Range : MonoBehaviour
     {
         if (collision.tag == "critter")
         {
-            if (killList.Count > 0)
-            {
-                target = killList.Dequeue();
-            }
-            else
-            {
-                target = null;
-            }
+            target = killList.Count > 0 ? killList.Dequeue() : null;
         }
     }
     public void CritterDead()
     {
-        if (killList.Count > 0)
-        {
-            target = killList.Dequeue();
-        }
-        else
-        {
-            target = null;
-        }
+        target = killList.Count > 0 ? killList.Dequeue() : null;
     }
 
 }

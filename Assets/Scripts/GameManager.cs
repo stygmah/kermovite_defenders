@@ -26,8 +26,11 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject creep;
     private Creep nextCreep;
+
     [SerializeField]
     private GameObject gameOverMenu;
+    [SerializeField]
+    private GameObject pauseMenu;
 
     private Tower selectedTower;
 
@@ -44,6 +47,8 @@ public class GameManager : Singleton<GameManager>
         ChangeMoneyText(Money);
         ChangeHealthText(Health);
         gameOverMenu.SetActive(false);
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -56,7 +61,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (Money >= towerBtn.Price)
         {
-            this.ClickedBtn = towerBtn;
+            ClickedBtn = towerBtn;
             Hover.Instance.Activate(towerBtn.Sprite);
         }
 
@@ -132,11 +137,13 @@ public class GameManager : Singleton<GameManager>
         {
             Time.timeScale = 1;
             paused = false;
+            pauseMenu.SetActive(false);
         }
         else
         {
             Time.timeScale = 0;
             paused = true;
+            pauseMenu.SetActive(true);
         }
     }
 }

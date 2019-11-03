@@ -16,17 +16,17 @@ public class Node
 
     public Node(TileScript tileRef)
     {
-        this.TileRef = tileRef;
-        this.GridPosition = tileRef.GridPosition;
-        this.WorldPosition = new Vector2(tileRef.GridPosition.X, tileRef.GridPosition.Y);
+        TileRef = tileRef;
+        GridPosition = tileRef.GridPosition;
+        WorldPosition = new Vector2(tileRef.GridPosition.X, tileRef.GridPosition.Y);
     }
 
     public void CalcValues(Node parent, Node goal, int gCost)
     {
-        this.Parent = parent;
-        this.G = parent.G + gCost;
-        this.H = ((Math.Abs(GridPosition.X - goal.GridPosition.X)) + Math.Abs((goal.GridPosition.Y - GridPosition.Y))) * 10;
-        this.F = G + H;
+        Parent = parent;
+        G = parent.G + gCost;
+        H = ((Math.Abs(GridPosition.X - goal.GridPosition.X)) + Math.Abs((goal.GridPosition.Y - GridPosition.Y))) * 10;
+        F = G + H;
     }
 
 }
