@@ -5,8 +5,8 @@
 
     public Pointer(int x, int y)
     {
-        this.X = x;
-        this.Y = y;
+        X = x;
+        Y = y;
     }
 
     public static bool operator == (Pointer x, Pointer y)
