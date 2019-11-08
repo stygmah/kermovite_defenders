@@ -11,6 +11,9 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     public GameObject goalPoint;
     public Spawn Spawn { get; set; }
+    [SerializeField]
+    public LevelWaves waves;
+
     //Cambiar por propio
     public Spawn Goal { get; set; }
     private Stack<Node> endPath;

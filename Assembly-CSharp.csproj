@@ -70,6 +70,8 @@
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Range.cs" />
     <Compile Include="Assets\Scripts\Scenes.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\LevelWaves.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\Wave.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\TileScript.cs" />

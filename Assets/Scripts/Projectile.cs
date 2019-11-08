@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public int damage;
     public float speed;
     public Tower tower;
+
     // Start is called before the first frame update
     void Start()
     {
