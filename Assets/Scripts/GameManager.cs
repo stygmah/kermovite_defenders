@@ -19,7 +19,6 @@ public class GameManager : Singleton<GameManager>
 
     public TowerBtn ClickedBtn { get; set; }
 
-    public ObjectPool Pool { get; set; }
     /// <summary>
     /// Changle later for wave
     /// </summary>
@@ -37,7 +36,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        Pool = GetComponent<ObjectPool>();
         nextCreep = creep.GetComponent<Creep>();
     }
 
