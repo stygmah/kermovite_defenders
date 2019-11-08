@@ -22,7 +22,6 @@ public class Range : MonoBehaviour
     {
         if(collision.tag == "critter")
         {
-            Debug.Log(collision.GetInstanceID());
             if (target != null)
             {
                 killList.Enqueue(collision.GetComponent<Creep>());

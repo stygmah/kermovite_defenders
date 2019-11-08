@@ -8,6 +8,9 @@ public class Projectile : MonoBehaviour
     public int damage;
     public float speed;
     public Tower tower;
+    public bool freeze;
+    public bool splash;
+    public int splashRange;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,5 +33,10 @@ public class Projectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+    public void SplashDamage()
+    {
+        splash = false;
+        this.GetComponent<CircleCollider2D>().radius = splashRange;
     }
 }

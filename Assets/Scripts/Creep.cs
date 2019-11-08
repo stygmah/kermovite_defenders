@@ -65,8 +65,7 @@ public class Creep : MonoBehaviour
             ReachGoal();
         }else if(collision.tag == "projectile")
         {
-            Debug.Log(collision.gameObject.GetComponent<Projectile>().damage);
-            takeDamage(collision.gameObject);
+            Hit(collision.gameObject);
         }
     }
     private void ReachGoal()
@@ -81,16 +80,31 @@ public class Creep : MonoBehaviour
             GameManager.Instance.GameOver();
         }
     }
-    private void takeDamage(GameObject projectile)
+    private void Hit(GameObject projectile)
+    {
+        Projectile pScript = projectile.GetComponent<Projectile>();
+        if (pScript.splash)
+        {
+            pScript.SplashDamage();
+        }
+        else
+        {
+            TakeDamage(projectile, false);
+        }
+
+    }
+    private void TakeDamage(GameObject projectile, bool splash)
     {
         Projectile projectileScript = projectile.GetComponent<Projectile>();
-        Debug.Log("Damaging");
         health = health - projectileScript.damage;
-        Destroy(projectile);
         if (health <= 0)
         {
             projectileScript.tower.range.CritterDead();
             Destroy(gameObject);
+        }
+        if (!splash)
+        {
+            Destroy(projectile);
         }
     }
 }

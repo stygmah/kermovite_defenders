@@ -114,6 +114,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SelectTower(Tower tower)
     {
+        Debug.Log("se");
         if(selectedTower != null)
         {
             DeselectTower();

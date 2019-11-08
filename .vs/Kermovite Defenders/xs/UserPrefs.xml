@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{64378BB7-BD05-35FE-AEB3-4FFBF6F672F6}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Projectile.cs">
     <Files>
       <File FileName="Assets/Scripts/TileScript.cs" Line="95" Column="36" />
       <File FileName="Assets/Scripts/Range.cs" Line="29" Column="14" />
       <File FileName="Assets/Scripts/Tower.cs" Line="8" Column="11" />
-      <File FileName="Assets/Scripts/Projectile.cs" Line="10" Column="24" />
+      <File FileName="Assets/Scripts/Projectile.cs" Line="11" Column="5" />
       <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Creep.cs" Line="13" Column="24" />
       <File FileName="Assets/Scripts/Hover.cs" Line="37" Column="27" />
@@ -16,6 +16,7 @@
       <File FileName="Assets/Scripts/Singleton.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Spawn.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/TowerBtn.cs" Line="34" Column="1" />
+      <File FileName="Assets/Scripts/ScriptableObjects/LevelWaves.cs" Line="5" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
