@@ -96,8 +96,8 @@ MonoBehaviour:
   range: {fileID: 0}
   projectile: {fileID: 7904930700938554643, guid: f57101f0c26fa42cca2db591cd253855,
     type: 3}
-  speed: 6
-  cooldown: 0.5
+  speed: 7
+  cooldown: 0.8
   damage: 5
 --- !u!1001 &466149751769474614
 PrefabInstance:

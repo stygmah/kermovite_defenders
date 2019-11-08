@@ -95,7 +95,7 @@ public class Creep : MonoBehaviour
         }
 
     }
-    private void TakeDamage(GameObject projectile, bool splash)
+    public void TakeDamage(GameObject projectile, bool splash)
     {
         Projectile projectileScript = projectile.GetComponent<Projectile>();
 
@@ -105,13 +105,14 @@ public class Creep : MonoBehaviour
             projectileScript.tower.range.CritterDead();
             Destroy(gameObject);
         }
-        if (!splash)
-        {
-            Destroy(projectile);
-        }
         else
         {
             healthBar.transform.localScale = new Vector3((float)health/startHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+        }
+
+        if (!splash)
+        {
+            Destroy(projectile);
         }
     }
 }

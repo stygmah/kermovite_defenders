@@ -115,4 +115,4 @@ MonoBehaviour:
   tower: {fileID: 0}
   freeze: 0
   splash: 1
-  splashRange: 0
+  splashRange: 1

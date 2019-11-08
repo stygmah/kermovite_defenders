@@ -10,11 +10,11 @@ public class Projectile : MonoBehaviour
     public Tower tower;
     public bool freeze;
     public bool splash;
-    public int splashRange;
+    public float splashRange;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -36,7 +36,15 @@ public class Projectile : MonoBehaviour
     }
     public void SplashDamage()
     {
-        splash = false;
-        this.GetComponent<CircleCollider2D>().radius = splashRange;
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, splashRange);
+        foreach (Collider2D col in enemies)
+        {
+            if (col.gameObject.tag == "critter")
+            {
+                Creep creep = col.gameObject.GetComponent<Creep>();
+                creep.TakeDamage(this.gameObject,true);
+            }
+        }
+        Destroy(this.gameObject);
     }
 }
