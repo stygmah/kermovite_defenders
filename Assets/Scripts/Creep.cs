@@ -13,13 +13,15 @@ public class Creep : MonoBehaviour
     private int health;
     [SerializeField]
     public int money;
-
+    private float startHealth;
+    private GameObject healthBar;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        startHealth = (float)health;
+        healthBar = this.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -84,13 +86,16 @@ public class Creep : MonoBehaviour
     private void takeDamage(GameObject projectile)
     {
         Projectile projectileScript = projectile.GetComponent<Projectile>();
-        Debug.Log("Damaging");
         health = health - projectileScript.damage;
         Destroy(projectile);
         if (health <= 0)
         {
             projectileScript.tower.range.CritterDead();
             Destroy(gameObject);
+        }
+        else
+        {
+            healthBar.transform.localScale = new Vector3((float)health/startHealth, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
         }
     }
 }
