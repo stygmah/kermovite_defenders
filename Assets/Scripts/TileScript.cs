@@ -87,6 +87,7 @@ public class TileScript : MonoBehaviour
     private void PlaceTower()
     {
             tower = Instantiate(GameManager.Instance.ClickedBtn.TowerPrefab, transform.position, Quaternion.identity).GetComponent<Tower>();
+            Debug.Log(tower);
             range = tower.transform.GetChild(0).GetComponent<Range>();
             
             GameManager.Instance.BuyTower(GameManager.Instance.ClickedBtn);

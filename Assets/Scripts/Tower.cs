@@ -20,6 +20,7 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(transform.GetChild(0));
         rangeRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
         rangeRenderer.enabled = false;
         range = transform.GetChild(0).gameObject.GetComponent<Range>();
