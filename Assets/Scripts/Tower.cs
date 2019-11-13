@@ -15,7 +15,12 @@ public class Tower : MonoBehaviour
     private float cooldown;
     [SerializeField]
     private int damage;
-
+    [SerializeField]
+    public bool freeze;
+    [SerializeField]
+    private int freezeFactor;
+    [SerializeField]
+    private float freezeTime;
 
     // Start is called before the first frame update
     void Start()
@@ -43,13 +48,40 @@ public class Tower : MonoBehaviour
     {
         if (range.target != null)
         {
-            Projectile projectileShot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
-            projectileShot.victim = range.target;
-            projectileShot.speed = speed;
-            projectileShot.damage = damage;
-            projectileShot.tower = this;
+            SearchToFreeze();
+            Creep toKill = freeze ? SearchToFreeze() : range.target;
+            if (toKill != null)
+            {
+                CreateProjectile(toKill);
+            }
         }
       
+    }
+    public void CreateProjectile(Creep target)
+    {
+        Projectile projectileShot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
+        projectileShot.victim = target;
+        projectileShot.speed = speed;
+        projectileShot.damage = damage;
+        projectileShot.freeze = freeze;
+        projectileShot.freezeFactor = freezeFactor;
+        projectileShot.freezeTime = freezeTime;
+        projectileShot.tower = this;
+    }
+    private Creep SearchToFreeze()
+    {
+        if (!range.target.frozen)
+        {
+            return range.target;
+        }
+        foreach (Creep creep in range.killList)
+        {
+            if (!creep.frozen)
+            {
+                return creep;
+            }
+        }
+        return null;
     }
 
 }

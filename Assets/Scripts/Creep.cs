@@ -15,6 +15,8 @@ public class Creep : MonoBehaviour
     public int money;
     private float startHealth;
     private GameObject healthBar;
+    public bool frozen;
+    private float initialSpeed;
 
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class Creep : MonoBehaviour
     {
         startHealth = (float)health;
         healthBar = this.transform.GetChild(0).gameObject;
+        initialSpeed = speed;
     }
 
     // Update is called once per frame
@@ -85,15 +88,11 @@ public class Creep : MonoBehaviour
     private void Hit(GameObject projectile)
     {
         Projectile pScript = projectile.GetComponent<Projectile>();
-        if (pScript.splash)
-        {
-            pScript.SplashDamage();
-        }
-        else
-        {
-            TakeDamage(projectile, false);
-        }
 
+        if (GetInstanceID() == pScript.victim.GetInstanceID())
+        {
+            hitType(projectile, pScript);
+        }
     }
     public void TakeDamage(GameObject projectile, bool splash)
     {
@@ -113,6 +112,37 @@ public class Creep : MonoBehaviour
         if (!splash)
         {
             Destroy(projectile);
+        }
+    }
+    private IEnumerator Freeze(int freezeFactor, float time)//factor is 1-100
+    {
+        frozen = true;
+        float toFreeze = 1f - (float)freezeFactor/100;
+        speed = speed * toFreeze;
+        yield return new WaitForSeconds(time);
+        frozen = false;
+        speed = initialSpeed;
+    }
+    public void FreezeCreature(int freezeFactor, float time)
+    {
+        if (!frozen)
+        {
+            StartCoroutine(Freeze(freezeFactor, time));
+        }
+    }
+    private void hitType(GameObject projectile, Projectile pScript)
+    {
+        if (pScript.splash)
+        {
+            pScript.SplashDamage();
+        }
+        else if (pScript.freeze)
+        {
+            pScript.freezeDamage(this.gameObject);
+        }
+        else
+        {
+            TakeDamage(projectile, false);
         }
     }
 }
