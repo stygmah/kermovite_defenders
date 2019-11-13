@@ -98,6 +98,11 @@ public class Creep : MonoBehaviour
     {
         Projectile projectileScript = projectile.GetComponent<Projectile>();
 
+        if (projectileScript.laser)
+        {
+            projectileScript.tower.LaserShot(transform.position);
+        }
+
         health = health - projectileScript.damage;
         if (health <= 0)
         {

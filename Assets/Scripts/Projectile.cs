@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     public float splashRange;
     public int freezeFactor;
     public float freezeTime;
+    public bool laser;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
     }
     public void SplashDamage()
     {
+        Debug.Log("splashing");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (Collider2D col in enemies)
         {
