@@ -93,7 +93,7 @@ public class Tower : MonoBehaviour
     public void LaserShot(Vector3 enemyPosition)
     {
         laserSprite.transform.localScale = new Vector3(laserSprite.transform.localScale.x, Vector2.Distance(transform.position, enemyPosition), 1f);
-        StartCoroutine(LaserEffect(rotationTowards(transform.position, enemyPosition), 0.2f));
+        StartCoroutine(LaserEffect(rotationTowards(transform.position, enemyPosition), 0.1f));
     }
 
     //asign to z
@@ -109,7 +109,18 @@ public class Tower : MonoBehaviour
         laserSprite.enabled = true;
         laserSprite.transform.rotation = Quaternion.Euler(0, 0, angle);
         yield return new WaitForSeconds(duration);
+        yield return StartCoroutine(FadeOut(laserSprite));
         laserSprite.enabled = false;
+    }
+    private IEnumerator FadeOut(SpriteRenderer sr)
+    {
+        for (float i = 1; i >= 0; i -= Time.deltaTime*3)
+        {
+            // set color with i as alpha
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, i);
+            yield return null;
+        }
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
     }
 
 }
