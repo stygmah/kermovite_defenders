@@ -104,7 +104,8 @@ public class Creep : MonoBehaviour
             projectileScript.tower.LaserShot(transform.position);
         }
 
-        health = health - projectileScript.damage;
+        InflictDamage(projectileScript);
+
         if (health <= 0)
         {
             projectileScript.tower.range.CritterDead();
@@ -156,5 +157,21 @@ public class Creep : MonoBehaviour
     {
         GameManager.Instance.ChangeMoney(money,true);
         Destroy(gameObject);
+    }
+
+    private void InflictDamage(Projectile projectile)
+    {
+        if (projectile.laser && resistant)
+        {
+            health = health - projectile.damage*2;
+        }
+        else if(resistant)
+        {
+            health = health - projectile.damage / 2;
+        }
+        else
+        {
+            health = health - projectile.damage;
+        }
     }
 }

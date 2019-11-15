@@ -178,7 +178,7 @@ MonoBehaviour:
     type: 3}
   speed: 100
   cooldown: 1
-  damage: 50
+  damage: 20
   freeze: 0
   freezeFactor: 0
   freezeTime: 0

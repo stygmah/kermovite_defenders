@@ -7149,7 +7149,7 @@ MonoBehaviour:
   Money: 200
   Health: 30
   paused: 0
-  creep: {fileID: 6241940539237424696, guid: e67a7cc8fd84245988ce178b4f94955a, type: 3}
+  creep: {fileID: 8691527215732618463, guid: 0eaf3b784cc094426801429d78f1039a, type: 3}
   gameOverMenu: {fileID: 773566520}
   pauseMenu: {fileID: 738988761}
 --- !u!4 &1144460642
