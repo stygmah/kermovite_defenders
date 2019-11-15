@@ -68,8 +68,7 @@ public class GameManager : Singleton<GameManager>
     public void BuyTower(TowerBtn towerBtn)
     {
         Hover.Instance.Deactivate();
-        Money = Money - towerBtn.Price;
-        ChangeMoneyText(Money);
+        ChangeMoney(towerBtn.Price,false);
     }
 
     private void CancelOption()
@@ -144,5 +143,17 @@ public class GameManager : Singleton<GameManager>
             paused = true;
             pauseMenu.SetActive(true);
         }
+    }
+    public void ChangeMoney(int amount, bool isSum)
+    {
+        if (isSum)
+        {
+            Money = Money + amount;
+        }
+        else
+        {
+            Money = Money - amount;
+        }
+        ChangeMoneyText(Money);
     }
 }

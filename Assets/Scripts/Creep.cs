@@ -107,7 +107,7 @@ public class Creep : MonoBehaviour
         if (health <= 0)
         {
             projectileScript.tower.range.CritterDead();
-            Destroy(gameObject);
+            Die();
         }
         else
         {
@@ -149,5 +149,11 @@ public class Creep : MonoBehaviour
         {
             TakeDamage(projectile, false);
         }
+    }
+
+    private void Die()
+    {
+        GameManager.Instance.ChangeMoney(money,true);
+        Destroy(gameObject);
     }
 }

@@ -176,7 +176,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   health: 50
-  money: 0
+  money: 10
+  frozen: 0
 --- !u!61 &6960098967153566424
 BoxCollider2D:
   m_ObjectHideFlags: 0

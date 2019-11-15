@@ -35,8 +35,11 @@ public class Tower : MonoBehaviour
         rangeRenderer.enabled = false;
         range = transform.GetChild(0).gameObject.GetComponent<Range>();
         InvokeRepeating("Attack", 0f, cooldown);
-        laserSprite = transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
-        laserSprite.enabled = false;
+        if (laser)
+        {
+            laserSprite = transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
+            laserSprite.enabled = false;
+        }
     }
 
     // Update is called once per frame
