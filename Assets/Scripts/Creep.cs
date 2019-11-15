@@ -17,6 +17,7 @@ public class Creep : MonoBehaviour
     private GameObject healthBar;
     public bool frozen;
     private float initialSpeed;
+    public bool resistant;
 
 
     // Start is called before the first frame update
