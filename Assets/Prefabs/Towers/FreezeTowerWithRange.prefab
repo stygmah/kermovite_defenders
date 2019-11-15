@@ -95,7 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: {fileID: 0}
   sprite: {fileID: 0}
+  level: 0
   towerName: Ice Tower
+  upgradeCosts: 320000005000000078000000fa000000
   projectile: {fileID: 2080790286994643155, guid: 9e9b55f208bf545dcb833ea617fbbad5,
     type: 3}
   speed: 4

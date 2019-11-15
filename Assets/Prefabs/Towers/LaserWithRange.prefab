@@ -175,7 +175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: {fileID: 0}
   sprite: {fileID: 0}
+  level: 0
   towerName: Laser Tower
+  upgradeCosts: 3200000064000000c80000002c010000
   projectile: {fileID: 5805600587438996547, guid: cb8336ff8ced742a0983e72e00479336,
     type: 3}
   speed: 100

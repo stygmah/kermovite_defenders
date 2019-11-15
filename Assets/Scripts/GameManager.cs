@@ -188,7 +188,7 @@ public class GameManager : Singleton<GameManager>
                 component.GetComponent<Image>().sprite = tower.sprite;
                 break;
             case "TowerNameAndLevel":
-                component.GetComponent<Text>().text = tower.towerName;
+                component.GetComponent<Text>().text = tower.towerName + " - " + tower.level;//change to pub method
                 break;
             case "DamageSpeed":
                 component.GetComponent<Text>().text = tower.GetAttackAndSpeed();
@@ -197,11 +197,26 @@ public class GameManager : Singleton<GameManager>
                 component.GetComponent<Text>().text = tower.GetSpecialText();
                 break;
             case "Buttons":
-                Debug.Log("4");
                 break;
             default:
                 Debug.Log("none");
                 break;
         }
     }
+    public void SetupTowerButtons(GameObject buttonContainer)
+    {
+
+    }
+    //tower menu actions
+    public void BuyUpgrade()
+    {
+        if (Money >= selectedTower.GetUpgradePrice() && selectedTower.CheckUpgradeable())
+        {
+            Debug.Log(selectedTower.GetUpgradePrice());
+            ChangeMoney(selectedTower.GetUpgradePrice(), false);
+            selectedTower.LevelUp();
+            SetTowerInfo(selectedTower);
+        }
+    }
+
 }

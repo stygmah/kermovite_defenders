@@ -8,9 +8,12 @@ public class Tower : MonoBehaviour
     public Range range;
     public Sprite sprite;
     private SpriteRenderer rangeRenderer;
+    public int level;
 
     [SerializeField]
     public string towerName;
+    [SerializeField]
+    private int[] upgradeCosts = new int[4];
 
     [SerializeField]
     private GameObject projectile;
@@ -32,6 +35,8 @@ public class Tower : MonoBehaviour
     private bool laser;
     private SpriteRenderer laserSprite;
 
+    private int upgradePrice;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +50,8 @@ public class Tower : MonoBehaviour
             laserSprite.enabled = false;
         }
         sprite = GetComponent<SpriteRenderer>().sprite;
+        level = 1;
+        UpdateUpgradePrice();
     }
 
     // Update is called once per frame
@@ -153,5 +160,22 @@ public class Tower : MonoBehaviour
         }
         return result;
     }
-
+    //Tower menu actions
+    public void LevelUp()
+    {
+        level++;
+        UpdateUpgradePrice();
+    }
+    public int GetUpgradePrice()
+    {
+        return upgradePrice;
+    }
+    public void UpdateUpgradePrice()
+    {
+        upgradePrice = upgradeCosts[level - 1];
+    }
+    public bool CheckUpgradeable()
+    {
+        return level < upgradeCosts.Length;
+    }
 }

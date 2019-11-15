@@ -69,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 30bbaaa6fe76b49e0b003f66fd78c364, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: {fileID: 0}
   sprite: {fileID: 0}
+  level: 0
   towerName: Cannon Tower
+  upgradeCosts: 28000000460000006400000096000000
   projectile: {fileID: 7904930700938554643, guid: f57101f0c26fa42cca2db591cd253855,
     type: 3}
   speed: 7

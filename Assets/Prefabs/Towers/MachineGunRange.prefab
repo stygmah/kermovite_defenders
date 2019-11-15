@@ -95,7 +95,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: {fileID: 0}
   sprite: {fileID: 0}
+  level: 0
   towerName: Machine Gun
+  upgradeCosts: 14000000230000003200000078000000
   projectile: {fileID: 3307664994487411430, guid: 83f1639b029204815a8c59bf08f57ee3,
     type: 3}
   speed: 20
