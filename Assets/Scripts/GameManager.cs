@@ -30,6 +30,10 @@ public class GameManager : Singleton<GameManager>
     private GameObject gameOverMenu;
     [SerializeField]
     private GameObject pauseMenu;
+    [SerializeField]
+    private GameObject towerInfoPanel;
+    [SerializeField]
+    private GameObject waveInfoPanel;
 
     private Tower selectedTower;
 
@@ -47,6 +51,7 @@ public class GameManager : Singleton<GameManager>
         gameOverMenu.SetActive(false);
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+        towerInfoPanel.active = false;
     }
 
     // Update is called once per frame
@@ -113,7 +118,6 @@ public class GameManager : Singleton<GameManager>
 
     public void SelectTower(Tower tower)
     {
-        Debug.Log("se");
         if(selectedTower != null)
         {
             DeselectTower();
@@ -128,6 +132,7 @@ public class GameManager : Singleton<GameManager>
             selectedTower.Select();
         }
         selectedTower = null;
+        towerInfoPanel.active = false;
     }
     public void Pause()
     {
@@ -155,5 +160,48 @@ public class GameManager : Singleton<GameManager>
             Money = Money - amount;
         }
         ChangeMoneyText(Money);
+    }
+    /// <summary>
+    /// Set tower info menu
+    /// </summary>
+    /// <param name="tower">Tower.</param>
+    public void ShowInfoTower(Tower tower)
+    {
+        towerInfoPanel.active = true;
+        SetTowerInfo(tower);
+    }
+
+    private void SetTowerInfo(Tower tower)
+    {
+        for (int i = 0; i < towerInfoPanel.transform.childCount; i++)
+        {
+            GameObject child = towerInfoPanel.transform.GetChild(i).gameObject;
+            TowerMenuSwitch(child, tower);
+        }
+    }
+
+    private void TowerMenuSwitch(GameObject component, Tower tower)
+    {
+        switch (component.name)
+        {
+            case "Image":
+                component.GetComponent<Image>().sprite = tower.sprite;
+                break;
+            case "TowerNameAndLevel":
+                component.GetComponent<Text>().text = tower.towerName;
+                break;
+            case "DamageSpeed":
+                component.GetComponent<Text>().text = tower.GetAttackAndSpeed();
+                break;
+            case "Specials":
+                component.GetComponent<Text>().text = tower.GetSpecialText();
+                break;
+            case "Buttons":
+                Debug.Log("4");
+                break;
+            default:
+                Debug.Log("none");
+                break;
+        }
     }
 }

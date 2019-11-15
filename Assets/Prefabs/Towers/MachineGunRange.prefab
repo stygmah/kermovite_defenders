@@ -94,11 +94,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {fileID: 0}
+  sprite: {fileID: 0}
+  towerName: Machine Gun
   projectile: {fileID: 3307664994487411430, guid: 83f1639b029204815a8c59bf08f57ee3,
     type: 3}
   speed: 20
   cooldown: 0.2
   damage: 5
+  freeze: 0
+  freezeFactor: 0
+  freezeTime: 0
+  laser: 0
 --- !u!1001 &1427789727445978724
 PrefabInstance:
   m_ObjectHideFlags: 0

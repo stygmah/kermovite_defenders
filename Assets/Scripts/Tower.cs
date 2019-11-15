@@ -6,7 +6,11 @@ public class Tower : MonoBehaviour
 {
 
     public Range range;
+    public Sprite sprite;
     private SpriteRenderer rangeRenderer;
+
+    [SerializeField]
+    public string towerName;
 
     [SerializeField]
     private GameObject projectile;
@@ -40,6 +44,7 @@ public class Tower : MonoBehaviour
             laserSprite = transform.GetChild(1).gameObject.GetComponent<SpriteRenderer>();
             laserSprite.enabled = false;
         }
+        sprite = GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -51,6 +56,7 @@ public class Tower : MonoBehaviour
     public void Select()
     {
         rangeRenderer.enabled = !rangeRenderer.enabled;
+        GameManager.Instance.ShowInfoTower(this);
     }
 
     public void Attack()
@@ -124,6 +130,28 @@ public class Tower : MonoBehaviour
             yield return null;
         }
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+    }
+    //Get text methods
+    public string GetAttackAndSpeed()
+    {
+        return "Att: "+damage+" / Sp: "+(15-(cooldown*10));
+    }
+    public string GetSpecialText()
+    {
+        string result = "";
+        Projectile pr = projectile.GetComponent<Projectile>();
+        if (freeze)
+        {
+            result = "Freeze time: " + freezeTime + "s";
+        }
+        else if(pr.splash)
+        {
+            result = "Splash: " + pr.splashRange * 10;
+        }else if (laser)
+        {
+            result = "Perforates armor";
+        }
+        return result;
     }
 
 }

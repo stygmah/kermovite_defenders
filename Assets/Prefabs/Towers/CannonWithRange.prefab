@@ -94,11 +94,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {fileID: 0}
+  sprite: {fileID: 0}
+  towerName: Cannon Tower
   projectile: {fileID: 7904930700938554643, guid: f57101f0c26fa42cca2db591cd253855,
     type: 3}
   speed: 7
   cooldown: 0.8
   damage: 5
+  freeze: 0
+  freezeFactor: 0
+  freezeTime: 0
+  laser: 0
 --- !u!1001 &466149751769474614
 PrefabInstance:
   m_ObjectHideFlags: 0
