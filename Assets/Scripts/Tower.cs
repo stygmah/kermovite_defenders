@@ -181,16 +181,24 @@ public class Tower : MonoBehaviour
     }
     public int GetUpgradePrice()
     {
-        return upgradePrice;
+        if (CheckUpgradeable())
+        {
+            return upgradePrice;
+        }
+        return 0;
     }
     public void UpdateUpgradePrice()
     {
         totalSpent += upgradePrice;
-        upgradePrice = upgradeCosts[level - 1];
+        if (CheckUpgradeable())
+        {
+            upgradePrice = upgradeCosts[level - 1];
+        }
+
     }
     public bool CheckUpgradeable()
     {
-        return level < upgradeCosts.Length;
+        return level < upgradeCosts.Length+1;
     }
     public void UpgradeAttributes()
     {
