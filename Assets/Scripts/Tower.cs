@@ -58,6 +58,7 @@ public class Tower : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>().sprite;
         level = 1;
         UpdateUpgradePrice();
+        UpdateRange();
     }
 
     // Update is called once per frame
@@ -120,7 +121,7 @@ public class Tower : MonoBehaviour
 
     public void UpdateRange()
     {
-        //TODO
+        range.transform.localScale = new Vector3(rangeRadius, rangeRadius, 1f);
     }
     //asign to z
     public float rotationTowards(Vector3 origin, Vector3 target)
@@ -194,7 +195,7 @@ public class Tower : MonoBehaviour
     public void UpgradeAttributes()
     {
         damage += (int)((float)damage * ((float)level / 5));
-        rangeRadius += (int)(rangeRadius * ((float)level / 10));
+        rangeRadius += rangeRadius * ((float)level / 20);
         if (freeze)
         {
             freezeTime += 0.30f+((float)level/15);
@@ -204,6 +205,7 @@ public class Tower : MonoBehaviour
             Projectile pr = projectile.GetComponent<Projectile>();
             pr.splashRange += pr.splashRange * 0.1f;
         }
+        UpdateRange();
     }
     public int GetSalePrice()
     {

@@ -103,10 +103,13 @@ MonoBehaviour:
   speed: 20
   cooldown: 0.2
   damage: 5
+  rangeRadius: 3
   freeze: 0
   freezeFactor: 0
   freezeTime: 0
   laser: 0
+  splash: 0
+  totalSpent: 0
 --- !u!1001 &1427789727445978724
 PrefabInstance:
   m_ObjectHideFlags: 0
