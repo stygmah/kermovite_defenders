@@ -197,22 +197,23 @@ public class GameManager : Singleton<GameManager>
                 component.GetComponent<Text>().text = tower.GetSpecialText();
                 break;
             case "Buttons":
+                SetupTowerButtons(component);
                 break;
             default:
-                Debug.Log("none");
                 break;
         }
     }
     public void SetupTowerButtons(GameObject buttonContainer)
     {
-
+        Debug.Log(buttonContainer.transform.GetChild(0).name);
+        buttonContainer.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "Upgrade\n"+selectedTower.GetUpgradePrice();
+        buttonContainer.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "Sell";
     }
     //tower menu actions
     public void BuyUpgrade()
     {
         if (Money >= selectedTower.GetUpgradePrice() && selectedTower.CheckUpgradeable())
         {
-            Debug.Log(selectedTower.GetUpgradePrice());
             ChangeMoney(selectedTower.GetUpgradePrice(), false);
             selectedTower.LevelUp();
             SetTowerInfo(selectedTower);

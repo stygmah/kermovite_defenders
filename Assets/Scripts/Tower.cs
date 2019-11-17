@@ -24,7 +24,9 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private int damage;
     [SerializeField]
+    private float rangeRadius;
 
+    [SerializeField]
     public bool freeze;
     [SerializeField]
     private int freezeFactor;
@@ -34,6 +36,9 @@ public class Tower : MonoBehaviour
     [SerializeField]
     private bool laser;
     private SpriteRenderer laserSprite;
+
+    [SerializeField]
+    public bool splash;
 
     private int upgradePrice;
 
@@ -112,6 +117,10 @@ public class Tower : MonoBehaviour
         StartCoroutine(LaserEffect(rotationTowards(transform.position, enemyPosition), 0.1f));
     }
 
+    public void UpdateRange()
+    {
+        //TODO
+    }
     //asign to z
     public float rotationTowards(Vector3 origin, Vector3 target)
     {
@@ -165,6 +174,8 @@ public class Tower : MonoBehaviour
     {
         level++;
         UpdateUpgradePrice();
+        UpgradeAttributes();
+        UpdateRange();
     }
     public int GetUpgradePrice()
     {
@@ -177,5 +188,19 @@ public class Tower : MonoBehaviour
     public bool CheckUpgradeable()
     {
         return level < upgradeCosts.Length;
+    }
+    public void UpgradeAttributes()
+    {
+        damage += (int)((float)damage * ((float)level / 5));
+        rangeRadius += (int)(rangeRadius * ((float)level / 10));
+        if (freeze)
+        {
+            freezeTime += 0.30f+((float)level/15);
+        }
+        else if (splash)
+        {
+            Projectile pr = projectile.GetComponent<Projectile>();
+            pr.splashRange += pr.splashRange * 0.1f;
+        }
     }
 }
