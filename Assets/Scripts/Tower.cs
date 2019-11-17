@@ -41,6 +41,7 @@ public class Tower : MonoBehaviour
     public bool splash;
 
     private int upgradePrice;
+    public int totalSpent;
 
     // Start is called before the first frame update
     void Start()
@@ -183,6 +184,7 @@ public class Tower : MonoBehaviour
     }
     public void UpdateUpgradePrice()
     {
+        totalSpent += upgradePrice;
         upgradePrice = upgradeCosts[level - 1];
     }
     public bool CheckUpgradeable()
@@ -202,5 +204,9 @@ public class Tower : MonoBehaviour
             Projectile pr = projectile.GetComponent<Projectile>();
             pr.splashRange += pr.splashRange * 0.1f;
         }
+    }
+    public int GetSalePrice()
+    {
+        return (int)((float)totalSpent * 0.9f);
     }
 }

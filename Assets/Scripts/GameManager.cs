@@ -205,9 +205,8 @@ public class GameManager : Singleton<GameManager>
     }
     public void SetupTowerButtons(GameObject buttonContainer)
     {
-        Debug.Log(buttonContainer.transform.GetChild(0).name);
-        buttonContainer.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "Upgrade\n"+selectedTower.GetUpgradePrice();
-        buttonContainer.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "Sell";
+        buttonContainer.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = "Upgrade\n$"+selectedTower.GetUpgradePrice();
+        buttonContainer.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = "Sell\n$"+ selectedTower.GetSalePrice();
     }
     //tower menu actions
     public void BuyUpgrade()
