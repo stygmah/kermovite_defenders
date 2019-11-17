@@ -93,10 +93,9 @@ public class TileScript : MonoBehaviour
             IsBuildable = false;
     }
 
-    private void RemoveTower()
+    public void RemoveTower()
     {
-
+        IsBuildable = true;
+        Destroy(tower.gameObject);
     }
-
-
 }

@@ -218,5 +218,12 @@ public class GameManager : Singleton<GameManager>
             SetTowerInfo(selectedTower);
         }
     }
+    public void SellTower()
+    {
+        ChangeMoney(selectedTower.GetSalePrice(), true);
+        TileScript tile = LevelManager.Instance.Tiles[new Pointer((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y)];
+        tile.RemoveTower();
+        towerInfoPanel.active = false;
+    }
 
 }
