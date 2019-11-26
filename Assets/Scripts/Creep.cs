@@ -174,4 +174,9 @@ public class Creep : MonoBehaviour
             health = health - projectile.damage;
         }
     }
+
+    public void SetHealth(float multiplier)
+    {
+        startHealth += startHealth * multiplier;
+    }
 }

@@ -7,6 +7,9 @@ public class GameManager : Singleton<GameManager>
 {
 
     [SerializeField]
+    private GameObject waveManager;
+
+    [SerializeField]
     private Text moneyText;
     [SerializeField]
     private Text healthText;
@@ -34,8 +37,12 @@ public class GameManager : Singleton<GameManager>
     private GameObject towerInfoPanel;
     [SerializeField]
     private GameObject waveInfoPanel;
+    [SerializeField]
+    private GameObject waveButton;
+
 
     private Tower selectedTower;
+    private WaveManager waveManagerInfo;
 
 
     private void Awake()
@@ -52,6 +59,7 @@ public class GameManager : Singleton<GameManager>
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         towerInfoPanel.active = false;
+        waveManagerInfo = waveManager.GetComponent<WaveManager>();
     }
 
     // Update is called once per frame
@@ -92,19 +100,6 @@ public class GameManager : Singleton<GameManager>
         healthText.text = quantity.ToString();
     }
 
-    public void NextWave()
-    {
-        StartCoroutine(SpawnWave());
-    }
-
-    private IEnumerator SpawnWave()
-    {
-        LevelManager.Instance.GeneratePath();
-        Creep thisCreep = Instantiate(nextCreep);
-        thisCreep.Spawn();
-
-        yield return new WaitForSeconds(2.5f);
-    }
     public void LoseLife()
     {
         Health--;
@@ -224,6 +219,39 @@ public class GameManager : Singleton<GameManager>
         TileScript tile = LevelManager.Instance.Tiles[new Pointer((int)selectedTower.transform.position.x, (int)selectedTower.transform.position.y)];
         tile.RemoveTower();
         towerInfoPanel.active = false;
+    }
+
+    //wave actions
+    public void NextWave()
+    {
+        StartCoroutine(LoopWave());
+    }
+
+    private GameObject setCreep()
+    {
+        Wave wave = waveManagerInfo.GetCurrentWave();
+        GameObject creepObj = wave.enemy;
+        Creep creep = creepObj.GetComponent<Creep>();
+        creep.SetHealth(wave.multiplier);
+        creep.money = wave.reward;
+
+        return creepObj;
+    }
+    private void SpawnWave()
+    {
+        GameObject creep = setCreep();
+        LevelManager.Instance.GeneratePath();
+        Creep thisCreep = Instantiate(creep.GetComponent<Creep>());
+        thisCreep.Spawn();
+    }
+    private IEnumerator LoopWave()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            SpawnWave();
+            yield return new WaitForSeconds(1f);
+
+        }
     }
 
 }

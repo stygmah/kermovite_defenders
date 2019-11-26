@@ -7635,6 +7635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075d6d64adc47c6b3b312d6a961ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveManager: {fileID: 1533594577}
   moneyText: {fileID: 1917378676}
   healthText: {fileID: 1683438857}
   Money: 200
@@ -7645,6 +7646,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 738988761}
   towerInfoPanel: {fileID: 2081926715}
   waveInfoPanel: {fileID: 0}
+  waveButton: {fileID: 466488416}
 --- !u!4 &1144460642
 Transform:
   m_ObjectHideFlags: 0
@@ -10448,6 +10450,54 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 138893654}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1533594577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533594579}
+  - component: {fileID: 1533594578}
+  m_Layer: 0
+  m_Name: WaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1533594578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533594577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3115e3940bd294c90bae30491b5ea281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - {fileID: 11400000, guid: 9cb1f56698d7a462bbc161179b793888, type: 2}
+  - {fileID: 11400000, guid: 4c9e9f8a2cc054132ac65984cc2c913b, type: 2}
+  - {fileID: 11400000, guid: 6af1a4b4dfd1f4261995ed87432f1ab6, type: 2}
+  - {fileID: 11400000, guid: b656ac6cd63db44dba005b6f82ea1eea, type: 2}
+--- !u!4 &1533594579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533594577}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 366.2667, y: 173.80618, z: -2.4200673}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1543802507
 GameObject:
   m_ObjectHideFlags: 0
