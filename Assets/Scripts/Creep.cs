@@ -189,4 +189,9 @@ public class Creep : MonoBehaviour
     {
         health += ((int)(health * multiplier) + wave);
     }
+
+    public int GetHealth()
+    {
+        return health;
+    }
 }

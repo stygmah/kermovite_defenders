@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
         towerInfoPanel.active = false;
         betweenWaves = true;
         waveButton.active = true;
+        NextWaveInfo();
     }
 
     // Update is called once per frame
@@ -250,6 +251,7 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator LoopWave(int n, float speed)
     {
+        NextWaveInfo();
         for (int i = 0; i < n; i++)
         {
             SpawnWave();
@@ -275,16 +277,24 @@ public class GameManager : Singleton<GameManager>
     }
 
     //next wave info
+    private void SetInfoNextWave(Wave next)
+    {
+        Debug.Log(next.enemy);
+        waveInfoPanel.transform.GetChild(0).GetComponent<Image>().sprite = next.enemy.GetComponent<SpriteRenderer>().sprite;//FALLA ESTE
+        waveInfoPanel.transform.GetChild(1).GetComponent<Text>().text = "Next Wave: "+WaveManager.Instance.GetWaveN()+" - "+next.enemy.name;
+        waveInfoPanel.transform.GetChild(2).GetComponent<Text>().text = next.enemy.GetComponent<Creep>().GetHealth()+"HP - $"+next.reward;
+    }
+
     private void NextWaveInfo()
     {
-        Wave nextWave = WaveManager.Instance.GetNextWaveInfo();
+        Wave nextWave = WaveManager.Instance.GetCurrentWave();
         if (nextWave != null)
         {
-            //reller info
+            SetInfoNextWave(nextWave);
         }
         else
         {
-            //ultima hola
+            //ultima ola, TODO:borra esta funcion, añade un if con return a la anterior
         }
     }
 

@@ -7876,7 +7876,7 @@ MonoBehaviour:
   gameOverMenu: {fileID: 773566520}
   pauseMenu: {fileID: 738988761}
   towerInfoPanel: {fileID: 2081926715}
-  waveInfoPanel: {fileID: 0}
+  waveInfoPanel: {fileID: 160048984}
   waveButton: {fileID: 466488416}
 --- !u!4 &1144460642
 Transform:
