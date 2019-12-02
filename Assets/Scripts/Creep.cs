@@ -19,6 +19,8 @@ public class Creep : MonoBehaviour
     private float initialSpeed;
     public bool resistant;
 
+    private bool dying;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,7 @@ public class Creep : MonoBehaviour
         startHealth = (float)health;
         healthBar = this.transform.GetChild(0).gameObject;
         initialSpeed = speed;
+        dying = false;
     }
 
     // Update is called once per frame
@@ -156,9 +159,14 @@ public class Creep : MonoBehaviour
 
     private void Die()
     {
-        GameManager.Instance.ChangeMoney(money,true);
-        GameManager.Instance.DeadOrGoalCreature();
-        Destroy(gameObject);
+
+        if (!dying)
+        {
+            dying = true;
+            GameManager.Instance.ChangeMoney(money, true);
+            GameManager.Instance.DeadOrGoalCreature();
+            Destroy(gameObject);
+        }
     }
 
     private void InflictDamage(Projectile projectile)
@@ -177,8 +185,8 @@ public class Creep : MonoBehaviour
         }
     }
 
-    public void SetHealth(float multiplier)
+    public void SetHealth(float multiplier, int wave)
     {
-        startHealth += startHealth * multiplier;
+        health += ((int)(health * multiplier) + wave);
     }
 }

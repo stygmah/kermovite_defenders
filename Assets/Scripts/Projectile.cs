@@ -40,7 +40,6 @@ public class Projectile : MonoBehaviour
     }
     public void SplashDamage()
     {
-        Debug.Log("splashing");
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, splashRange);
         foreach (Collider2D col in enemies)
         {

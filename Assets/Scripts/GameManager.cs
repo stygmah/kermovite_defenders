@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
     public TowerBtn ClickedBtn { get; set; }
 
     private Creep nextCreep;
-    private int nCreeps;
+    [SerializeField] /*TODO:DELETE SF*/private int nCreeps;
     private bool betweenWaves;
 
     [SerializeField]
@@ -235,12 +235,10 @@ public class GameManager : Singleton<GameManager>
 
     private GameObject setCreep()
     {
-        Wave wave = WaveManager.Instance.GetCurrentWave();
-        GameObject creepObj = wave.enemy;
+        GameObject creepObj = WaveManager.Instance.GetCurrentWave().enemy;
         Creep creep = creepObj.GetComponent<Creep>();
-        creep.SetHealth(wave.multiplier);
-        creep.money = wave.reward;
-
+        creep.money = WaveManager.Instance.GetCurrentWave().reward;
+     
         return creepObj;
     }
     private void SpawnWave()
@@ -273,9 +271,6 @@ public class GameManager : Singleton<GameManager>
         if (nCreeps <= 0)
         {
             WaveEnd();
-        }
-        {
-
         }
     }
 

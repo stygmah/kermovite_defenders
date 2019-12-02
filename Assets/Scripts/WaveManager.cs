@@ -29,11 +29,16 @@ public class WaveManager : Singleton<WaveManager>
     {
         return this.currentWave;
     }
+    public float GetMultiplier()
+    {
+        return this.multiplier;
+    }
 
     public void NextWave()
     {
         if (waves.Length > nextWaveN)
         {
+            SetNextHealth();
             currentWave = waves[nextWaveN];
             multiplier += currentWave.multiplier;
             nextWaveN++;
@@ -53,6 +58,16 @@ public class WaveManager : Singleton<WaveManager>
         }else
         {
             return null;
+        }
+
+    }
+
+    private void SetNextHealth()
+    {
+        if (waves.Length > nextWaveN)
+        {
+            Creep nextCreep = waves[nextWaveN].enemy.GetComponent<Creep>();
+            nextCreep.SetHealth(multiplier, nextWaveN);
         }
 
     }
