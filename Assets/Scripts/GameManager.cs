@@ -7,9 +7,6 @@ public class GameManager : Singleton<GameManager>
 {
 
     [SerializeField]
-    private GameObject waveManager;
-
-    [SerializeField]
     private Text moneyText;
     [SerializeField]
     private Text healthText;
@@ -22,12 +19,9 @@ public class GameManager : Singleton<GameManager>
 
     public TowerBtn ClickedBtn { get; set; }
 
-    /// <summary>
-    /// Changle later for wave
-    /// </summary>
-    [SerializeField]
-    private GameObject creep;
     private Creep nextCreep;
+    private int nCreeps;
+    private bool betweenWaves;
 
     [SerializeField]
     private GameObject gameOverMenu;
@@ -42,12 +36,14 @@ public class GameManager : Singleton<GameManager>
 
 
     private Tower selectedTower;
-    private WaveManager waveManagerInfo;
+
+    /*
 
 
+         */
     private void Awake()
     {
-        nextCreep = creep.GetComponent<Creep>();
+
     }
 
     // Start is called before the first frame update
@@ -59,7 +55,8 @@ public class GameManager : Singleton<GameManager>
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
         towerInfoPanel.active = false;
-        waveManagerInfo = waveManager.GetComponent<WaveManager>();
+        betweenWaves = true;
+        waveButton.active = true;
     }
 
     // Update is called once per frame
@@ -111,6 +108,7 @@ public class GameManager : Singleton<GameManager>
         gameOverMenu.SetActive(true);
     }
 
+    //TOWERS
     public void SelectTower(Tower tower)
     {
         if(selectedTower != null)
@@ -129,6 +127,8 @@ public class GameManager : Singleton<GameManager>
         selectedTower = null;
         towerInfoPanel.active = false;
     }
+
+    //OPTIONS
     public void Pause()
     {
         if (paused)
@@ -156,10 +156,6 @@ public class GameManager : Singleton<GameManager>
         }
         ChangeMoneyText(Money);
     }
-    /// <summary>
-    /// Set tower info menu
-    /// </summary>
-    /// <param name="tower">Tower.</param>
     public void ShowInfoTower(Tower tower)
     {
         towerInfoPanel.active = true;
@@ -221,15 +217,25 @@ public class GameManager : Singleton<GameManager>
         towerInfoPanel.active = false;
     }
 
-    //wave actions
+    /*
+    *               *  
+    * WAVE ACTIONS  *
+    *               *
+    */
+
+    //Create Waves
     public void NextWave()
     {
-        StartCoroutine(LoopWave());
+        betweenWaves = false;
+        waveButton.active = false;
+        nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
+        float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;
+        StartCoroutine(LoopWave(nCreeps, speed));
     }
 
     private GameObject setCreep()
     {
-        Wave wave = waveManagerInfo.GetCurrentWave();
+        Wave wave = WaveManager.Instance.GetCurrentWave();
         GameObject creepObj = wave.enemy;
         Creep creep = creepObj.GetComponent<Creep>();
         creep.SetHealth(wave.multiplier);
@@ -244,12 +250,31 @@ public class GameManager : Singleton<GameManager>
         Creep thisCreep = Instantiate(creep.GetComponent<Creep>());
         thisCreep.Spawn();
     }
-    private IEnumerator LoopWave()
+    private IEnumerator LoopWave(int n, float speed)
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < n; i++)
         {
             SpawnWave();
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(speed);
+
+        }
+    }
+
+    //End Waves
+    private void WaveEnd()
+    {
+        WaveManager.Instance.NextWave();
+        waveButton.active = true;
+        betweenWaves = true;
+    }
+    public void DeadOrGoalCreature()
+    {
+        nCreeps--;
+        if (nCreeps <= 0)
+        {
+            WaveEnd();
+        }
+        {
 
         }
     }

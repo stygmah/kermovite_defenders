@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveManager : MonoBehaviour
+public class WaveManager : Singleton<WaveManager>
 {
     [SerializeField]
     private Wave[] waves;
     private Wave currentWave;
-    private int waveN;
+    private int nextWaveN;
     private float multiplier;
 
     // Start is called before the first frame update
     void Start()
     {
-        waveN = 0;
+        nextWaveN = 0;
         multiplier = 0f;
 
-        this.currentWave = waves[0];//DELETE
+        NextWave();
     }
 
     // Update is called once per frame
@@ -30,15 +30,31 @@ public class WaveManager : MonoBehaviour
         return this.currentWave;
     }
 
-    public void nextWave()
+    public void NextWave()
     {
-        if (waves.Length > waveN)
+        if (waves.Length > nextWaveN)
         {
-            currentWave = waves[waveN];
+            currentWave = waves[nextWaveN];
             multiplier += currentWave.multiplier;
-            waveN++;
+            nextWaveN++;
         } 
     }
 
+    public int GetWaveN()
+    {
+        return nextWaveN;
+    }
+
+    public Wave GetNextWaveInfo()
+    {
+        if (waves.Length > nextWaveN)
+        {
+            return waves[nextWaveN + 1];
+        }else
+        {
+            return null;
+        }
+
+    }
 
 }

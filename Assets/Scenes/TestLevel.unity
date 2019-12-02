@@ -3629,9 +3629,9 @@ RectTransform:
   m_Father: {fileID: 939527806}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7, y: 166}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 7, y: -24}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &466488418
@@ -7635,13 +7635,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83075d6d64adc47c6b3b312d6a961ce0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveManager: {fileID: 1533594577}
   moneyText: {fileID: 1917378676}
   healthText: {fileID: 1683438857}
   Money: 200
   Health: 30
   paused: 0
-  creep: {fileID: 8691527215732618463, guid: 0eaf3b784cc094426801429d78f1039a, type: 3}
   gameOverMenu: {fileID: 773566520}
   pauseMenu: {fileID: 738988761}
   towerInfoPanel: {fileID: 2081926715}
