@@ -274,4 +274,18 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    //next wave info
+    private void NextWaveInfo()
+    {
+        Wave nextWave = WaveManager.Instance.GetNextWaveInfo();
+        if (nextWave != null)
+        {
+            //reller info
+        }
+        else
+        {
+            //ultima hola
+        }
+    }
+
 }
