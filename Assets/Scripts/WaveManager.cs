@@ -10,13 +10,17 @@ public class WaveManager : Singleton<WaveManager>
     private int nextWaveN;
     private float multiplier;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         nextWaveN = 0;
         multiplier = 0f;
 
         NextWave();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
@@ -42,6 +46,7 @@ public class WaveManager : Singleton<WaveManager>
             currentWave = waves[nextWaveN];
             multiplier += currentWave.multiplier;
             nextWaveN++;
+            GameManager.Instance.SetInfoNextWave();
         } 
     }
 
@@ -50,16 +55,9 @@ public class WaveManager : Singleton<WaveManager>
         return nextWaveN;
     }
 
-    public Wave GetNextWaveInfo()
+    public bool IsLast()
     {
-        if (waves.Length > nextWaveN)
-        {
-            return waves[nextWaveN + 1];
-        }else
-        {
-            return null;
-        }
-
+        return waves.Length <= nextWaveN;
     }
 
     private void SetNextHealth()
