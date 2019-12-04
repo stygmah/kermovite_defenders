@@ -288,7 +288,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void PayInterest()
     {
-        Money += (int)Mathf.Ceil(Money * Interest);
+        Money += (int)(Money * Interest);
         ChangeMoneyText(Money);
     }
     public void DeadOrGoalCreature()
@@ -328,7 +328,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void SetEndInfoMessage()
     {
-        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)Mathf.Ceil(Money * Interest); 
+        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)(Money * Interest); 
         string points = "e";
         string special = "i";
         endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
@@ -393,11 +393,20 @@ public class GameManager : Singleton<GameManager>
     {
         Interest += 0.01f;
         SubtractSpecialPoint(1);
+        string msg = "Interest increment to " + (int)(Interest * 100f) + "%";
+        CustomMessage(msg);
     }
     public void SpendOnCollect()
     {
         //TODO: Return Kermovite to reactor
         SubtractSpecialPoint(1);
+        string msg = "All the Kermovite lying around has been returned to the reactor";
+        CustomMessage(msg);
+    }
+    public void CustomMessage(string msg)
+    {
+        endWaveInfo.GetComponent<Text>().text = msg;
+        StartCoroutine(ShowEndWaveInfo());
     }
 
 }
