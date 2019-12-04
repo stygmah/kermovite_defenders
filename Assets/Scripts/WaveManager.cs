@@ -69,5 +69,9 @@ public class WaveManager : Singleton<WaveManager>
         }
 
     }
+    public bool IsBoss()
+    {
+        return currentWave.isBoss;
+    }
 
 }

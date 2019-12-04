@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public int Money;
     public int Health;
     public float Interest;
+    private int SpecialPoints;
 
     private bool gameOver = false;
     public bool paused = false;
@@ -35,6 +36,8 @@ public class GameManager : Singleton<GameManager>
     private GameObject waveButton;
     [SerializeField]
     private GameObject endWaveInfo;
+    [SerializeField]
+    private GameObject specialPanel;
 
 
     private Tower selectedTower;
@@ -60,6 +63,9 @@ public class GameManager : Singleton<GameManager>
         betweenWaves = true;
         waveButton.active = true;
         Interest = 0.03f;
+        SpecialPoints = 0;
+        SetSpecialPanelText();
+        ActivateDeactivateSpecialButtons();
 
         //set color
         Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
@@ -81,6 +87,9 @@ public class GameManager : Singleton<GameManager>
         }
 
     }
+
+
+    //TODO: Start methods, group into set values, set texts, etc
 
     public void BuyTower(TowerBtn towerBtn)
     {
@@ -268,12 +277,14 @@ public class GameManager : Singleton<GameManager>
     //End Waves
     private void WaveEnd()
     {
+        GainSpecialPoint();
         WaveManager.Instance.NextWave();
         waveButton.active = true;
         betweenWaves = true;
         SetEndInfoMessage();
         PayInterest();
         StartCoroutine(ShowEndWaveInfo());
+     
     }
     private void PayInterest()
     {
@@ -322,7 +333,6 @@ public class GameManager : Singleton<GameManager>
         string special = "i";
         endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
     }
-
     //next wave info
     public void SetInfoNextWave()
     {
@@ -341,6 +351,53 @@ public class GameManager : Singleton<GameManager>
             waveInfoPanel.transform.GetChild(2).GetComponent<Text>().text = next.enemy.GetComponent<Creep>().GetHealth() + "HP - $" + next.reward;
         }
 
+    }
+    //special panel
+    private void SetSpecialPanelText()
+    {
+        specialPanel.transform.GetChild(2).GetComponent<Text>().text = "Special points: "+SpecialPoints;
+    }
+    private void ActivateDeactivateSpecialButtons()
+    {
+        //TODO: One line conditionals depending on price
+        if (SpecialPoints > 0)
+        {
+            specialPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+            specialPanel.transform.GetChild(1).GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            specialPanel.transform.GetChild(0).GetComponent<Button>().interactable = false;
+            specialPanel.transform.GetChild(1).GetComponent<Button>().interactable = false;
+        }
+    }
+    private void GainSpecialPoint()
+    {
+        if (WaveManager.Instance.IsBoss())
+        {
+            SpecialPoints += 3;
+            SetSpecialPanelText();
+            ActivateDeactivateSpecialButtons();
+        }
+    }
+    private void SubtractSpecialPoint(int amount)
+    {
+        if ((SpecialPoints - amount) >=0)
+        {
+            SpecialPoints -= amount;
+            SetSpecialPanelText();
+            ActivateDeactivateSpecialButtons();
+        }
+    }
+    public void SpendOnInterest()
+    {
+        Interest += 0.01f;
+        SubtractSpecialPoint(1);
+    }
+    public void SpendOnCollect()
+    {
+        //TODO: Return Kermovite to reactor
+        SubtractSpecialPoint(1);
     }
 
 }
