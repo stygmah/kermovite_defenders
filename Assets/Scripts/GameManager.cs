@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     private Text healthText;
     public int Money;
     public int Health;
-
+    public float Interest;
 
     private bool gameOver = false;
     public bool paused = false;
@@ -57,7 +57,7 @@ public class GameManager : Singleton<GameManager>
         towerInfoPanel.active = false;
         betweenWaves = true;
         waveButton.active = true;
-        //SetInfoNextWave();
+        Interest = 0.03f;
     }
 
     // Update is called once per frame
@@ -265,6 +265,12 @@ public class GameManager : Singleton<GameManager>
         WaveManager.Instance.NextWave();
         waveButton.active = true;
         betweenWaves = true;
+        PayInterest();
+    }
+    private void PayInterest()
+    {
+        Money += (int)Mathf.Ceil(Money * Interest);
+        ChangeMoneyText(Money);
     }
     public void DeadOrGoalCreature()
     {
@@ -274,7 +280,10 @@ public class GameManager : Singleton<GameManager>
             WaveEnd();
         }
     }
+    private void ShowEndWaveInfo()
+    {
 
+    }
     //next wave info
     public void SetInfoNextWave()
     {
