@@ -63,7 +63,7 @@ public class GameManager : Singleton<GameManager>
         betweenWaves = true;
         waveButton.active = true;
         Interest = 0.03f;
-        SpecialPoints = 0;
+        SpecialPoints = 1;
         SetSpecialPanelText();
         ActivateDeactivateSpecialButtons();
 
