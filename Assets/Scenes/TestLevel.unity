@@ -7296,7 +7296,7 @@ GameObject:
   - component: {fileID: 987476736}
   - component: {fileID: 987476735}
   m_Layer: 5
-  m_Name: EndWaveMessage
+  m_Name: InfoMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
