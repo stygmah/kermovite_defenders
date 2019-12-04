@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
     public TowerBtn ClickedBtn { get; set; }
 
     private Creep nextCreep;
-    [SerializeField] /*TODO:DELETE SF*/private int nCreeps;
+    private int nCreeps;
     private bool betweenWaves;
 
     [SerializeField]
@@ -33,6 +33,8 @@ public class GameManager : Singleton<GameManager>
     private GameObject waveInfoPanel;
     [SerializeField]
     private GameObject waveButton;
+    [SerializeField]
+    private GameObject endWaveInfo;
 
 
     private Tower selectedTower;
@@ -58,6 +60,10 @@ public class GameManager : Singleton<GameManager>
         betweenWaves = true;
         waveButton.active = true;
         Interest = 0.03f;
+
+        //set color
+        Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
+        colorWaveInfo.color = new Color(colorWaveInfo.color.r, colorWaveInfo.color.g, colorWaveInfo.color.b, 0);
     }
 
     // Update is called once per frame
@@ -265,7 +271,9 @@ public class GameManager : Singleton<GameManager>
         WaveManager.Instance.NextWave();
         waveButton.active = true;
         betweenWaves = true;
+        SetEndInfoMessage();
         PayInterest();
+        StartCoroutine(ShowEndWaveInfo());
     }
     private void PayInterest()
     {
@@ -280,10 +288,41 @@ public class GameManager : Singleton<GameManager>
             WaveEnd();
         }
     }
-    private void ShowEndWaveInfo()
+    private IEnumerator ShowEndWaveInfo()
     {
-
+        Text txt = endWaveInfo.GetComponent<Text>();
+        yield return StartCoroutine(FadeInMessage(txt));
+        yield return new WaitForSeconds(2.5f);
+        yield return StartCoroutine(FadeOutMessage(txt));
     }
+    private IEnumerator FadeOutMessage(Text sr)
+    {
+        for (float i = 1; i >= 0; i -= Time.deltaTime * 2)
+        {
+            // set color with i as alpha
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, i);
+            yield return null;
+        }
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 0);
+    }
+    private IEnumerator FadeInMessage(Text sr)
+    {
+        for (float i = 0; i <= 0; i += Time.deltaTime)
+        {
+            // set color with i as alpha
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, i);
+            yield return null;
+        }
+        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+    }
+    private void SetEndInfoMessage()
+    {
+        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)Mathf.Ceil(Money * Interest); 
+        string points = "e";
+        string special = "i";
+        endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
+    }
+
     //next wave info
     public void SetInfoNextWave()
     {
