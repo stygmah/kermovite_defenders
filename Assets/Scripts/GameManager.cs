@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     public int Health;
     public float Interest;
     private int SpecialPoints;
+    private int Score;
 
     private bool gameOver = false;
     public bool paused = false;
@@ -22,6 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     private Creep nextCreep;
     private int nCreeps;
+    private int creepsKilled;
     private bool betweenWaves;
 
     [SerializeField]
@@ -66,6 +68,7 @@ public class GameManager : Singleton<GameManager>
         SpecialPoints = 1;
         SetSpecialPanelText();
         ActivateDeactivateSpecialButtons();
+        Score = 0;
 
         //set color
         Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
@@ -245,6 +248,7 @@ public class GameManager : Singleton<GameManager>
         betweenWaves = false;
         waveButton.active = false;
         nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
+        creepsKilled = 0;
         float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;
         StartCoroutine(LoopWave(nCreeps, speed));
     }
@@ -277,13 +281,14 @@ public class GameManager : Singleton<GameManager>
     //End Waves
     private void WaveEnd()
     {
-        GainSpecialPoint();
-        WaveManager.Instance.NextWave();
-        waveButton.active = true;
-        betweenWaves = true;
-        SetEndInfoMessage();
         PayInterest();
+        betweenWaves = true;
+        waveButton.active = true;
+        SetEndInfoMessage();
         StartCoroutine(ShowEndWaveInfo());
+        GainSpecialPoint();
+        Score += CalculateScore(WaveManager.Instance.GetCurrentWave());
+        WaveManager.Instance.NextWave();
      
     }
     private void PayInterest()
@@ -291,8 +296,9 @@ public class GameManager : Singleton<GameManager>
         Money += (int)(Money * Interest);
         ChangeMoneyText(Money);
     }
-    public void DeadOrGoalCreature()
+    public void DeadOrGoalCreature(bool killed)
     {
+        if(killed) creepsKilled++;
         nCreeps--;
         if (nCreeps <= 0)
         {
@@ -328,9 +334,13 @@ public class GameManager : Singleton<GameManager>
     }
     private void SetEndInfoMessage()
     {
-        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)(Money * Interest); 
-        string points = "e";
-        string special = "i";
+        Wave wave = WaveManager.Instance.GetCurrentWave();
+        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)(Money * Interest);
+        string points = "Points: $" + wave.reward +
+               " * Killed Units:" + creepsKilled +
+               "/10 * Kermovite: " + Health +
+               " = "+ CalculateScore(wave);//TODO: Replace Kermovite;
+        string special = wave.isBoss ? "Earned 2 Special Points!": "";
         endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
     }
     //next wave info
@@ -407,6 +417,11 @@ public class GameManager : Singleton<GameManager>
     {
         endWaveInfo.GetComponent<Text>().text = msg;
         StartCoroutine(ShowEndWaveInfo());
+    }
+    //Score
+    public int CalculateScore(Wave wave)
+    {
+        return wave.isBoss ? wave.reward * creepsKilled * Health : wave.reward * (creepsKilled / 10) * Health; //TODO: add kermovite instead of health
     }
 
 }

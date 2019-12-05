@@ -79,7 +79,7 @@ public class Creep : MonoBehaviour
     }
     private void ReachGoal()
     {
-        GameManager.Instance.DeadOrGoalCreature();
+        GameManager.Instance.DeadOrGoalCreature(false);
         Destroy(gameObject);
         if (GameManager.Instance.Health > 0)
         {
@@ -164,7 +164,7 @@ public class Creep : MonoBehaviour
         {
             dying = true;
             GameManager.Instance.ChangeMoney(money, true);
-            GameManager.Instance.DeadOrGoalCreature();
+            GameManager.Instance.DeadOrGoalCreature(true);//TODO:substitute money change and do it in game manager
             Destroy(gameObject);
         }
     }
