@@ -40,6 +40,7 @@ public class WaveManager : Singleton<WaveManager>
 
     public void NextWave()
     {
+        Debug.Log("nextWaven:" + nextWaveN + " length:" + waves.Length);
         if (waves.Length > nextWaveN)
         {
             SetNextHealth();
@@ -47,7 +48,11 @@ public class WaveManager : Singleton<WaveManager>
             multiplier += currentWave.multiplier;
             nextWaveN++;
             GameManager.Instance.SetInfoNextWave();
-        } 
+        }
+        else
+        {
+            GameManager.Instance.Victory();
+        }
     }
 
     public int GetWaveN()

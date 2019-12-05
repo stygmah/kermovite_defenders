@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>
     private GameObject endWaveInfo;
     [SerializeField]
     private GameObject specialPanel;
+    [SerializeField]
+    private GameObject victoryPanel;
 
 
     private Tower selectedTower;
@@ -338,7 +340,7 @@ public class GameManager : Singleton<GameManager>
         string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)(Money * Interest);
         string points = "Points: $" + wave.reward +
                " * Killed Units:" + creepsKilled +
-               "/10 * Kermovite: " + Health +
+               ":10 * Kermovite: " + Health +
                " = "+ CalculateScore(wave);//TODO: Replace Kermovite;
         string special = wave.isBoss ? "Earned 2 Special Points!": "";
         endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
@@ -422,6 +424,13 @@ public class GameManager : Singleton<GameManager>
     public int CalculateScore(Wave wave)
     {
         return wave.isBoss ? wave.reward * creepsKilled * Health : wave.reward * (creepsKilled / 10) * Health; //TODO: add kermovite instead of health
+    }
+    //End
+    public void Victory()
+    {
+        victoryPanel.transform.GetChild(0).GetComponent<Text>().text = "Score: " + Score;
+        victoryPanel.active = true;
+        Time.timeScale = 0;
     }
 
 }
