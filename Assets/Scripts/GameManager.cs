@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Text healthText;
     public int Money;
-    public int Health;
+    public int Health = 5;
     public float Interest;
     private int SpecialPoints;
     private int Score;
@@ -123,6 +123,7 @@ public class GameManager : Singleton<GameManager>
         Health--;
         ChangeHealthText(Health);
     }
+
     public void GameOver()
     {
         gameOver = true;
