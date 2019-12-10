@@ -7,6 +7,8 @@ TagManager:
   - goal
   - critter
   - projectile
+  - spawn
+  - kermovite
   layers:
   - Default
   - TransparentFX
