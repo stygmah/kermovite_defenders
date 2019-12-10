@@ -60,4 +60,19 @@ public class Reactor : MonoBehaviour
     {
         return remainingCrystals;
     }
+
+    public void RestoreReactor()
+    {
+        int toRestore = GameManager.Instance.Health - (remainingCrystals - 1);
+        for(int i = 0; i < toRestore; i++)
+        {
+            RecoverCrystal();
+        }
+        GameManager.Instance.SpendOnCollect();
+        GameObject[] ks = GameObject.FindGameObjectsWithTag("kermovite");
+        foreach (GameObject k in ks)
+        {
+            Destroy(k);
+        }
+    }
 }
