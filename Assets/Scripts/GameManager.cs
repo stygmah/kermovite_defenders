@@ -255,6 +255,7 @@ public class GameManager : Singleton<GameManager>
         nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
         creepsKilled = 0;
         float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;
+        ActivateDeactivateSpecialButtons();
         StartCoroutine(LoopWave(nCreeps, speed));
     }
 
@@ -294,7 +295,7 @@ public class GameManager : Singleton<GameManager>
         GainSpecialPoint();
         Score += CalculateScore(WaveManager.Instance.GetCurrentWave());
         WaveManager.Instance.NextWave();
-     
+        ActivateDeactivateSpecialButtons();
     }
     private void PayInterest()
     {
@@ -375,8 +376,9 @@ public class GameManager : Singleton<GameManager>
     private void ActivateDeactivateSpecialButtons()
     {
         //TODO: One line conditionals depending on price
-        if (SpecialPoints > 0)
+        if (SpecialPoints > 0 && betweenWaves)
         {
+            Debug.Log("!");
             specialPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
             specialPanel.transform.GetChild(1).GetComponent<Button>().interactable = true;
         }
