@@ -13,6 +13,7 @@ public class Creep : MonoBehaviour
     private int health;
     [SerializeField]
     public int money;
+
     private float startHealth;
     private GameObject healthBar;
     public bool frozen;
@@ -20,6 +21,8 @@ public class Creep : MonoBehaviour
     public bool resistant;
 
     private bool dying;
+    private GameObject kermovite;
+    private bool reachedGoal;
 
 
     // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class Creep : MonoBehaviour
         healthBar = this.transform.GetChild(0).gameObject;
         initialSpeed = speed;
         dying = false;
+        reachedGoal = false;
     }
 
     // Update is called once per frame
@@ -71,17 +75,37 @@ public class Creep : MonoBehaviour
     {
         if (collision.tag== "goal")
         {
-            ReachGoal();
-            collision.gameObject.GetComponent<Reactor>().LooseCrystal();
-        }else if(collision.tag == "projectile")
+            //ReachGoal(); TODO REMOVE
+            Reactor reactor = collision.gameObject.GetComponent<Reactor>();
+            kermovite = reactor.LooseCrystal();
+            reachedGoal = true;
+            if(kermovite != null)Glow();
+            ReturnToSpawn();
+        }
+        else if(collision.tag == "projectile")
         {
             Hit(collision.gameObject);
         }
+        else if(collision.tag == "kermovite" && kermovite == null)
+        {
+
+        }
+        else if (collision.tag == "spawn" && reachedGoal)
+        {
+            
+            ReachGoal();
+        }
     }
     private void ReachGoal()
-    {
+    {//TODO: Make it into end;
+
         GameManager.Instance.DeadOrGoalCreature(false);
         Destroy(gameObject);
+        if (kermovite != null) LooseLife();
+    }
+    private void LooseLife()
+    {//TODO Clean and move to GameManager
+    //TODO subtract 1 kermovite or use life as counter
         if (GameManager.Instance.Health > 0)
         {
             GameManager.Instance.LoseLife();
@@ -194,5 +218,14 @@ public class Creep : MonoBehaviour
     public int GetHealth()
     {
         return health;
+    }
+    public void ReturnToSpawn()
+    {
+        path = LevelManager.Instance.GenerateReversePath(new Pointer((int)transform.position.x, (int)transform.position.y));
+        destination = path.Pop().WorldPosition;
+    }
+    private void Glow()
+    {
+        if(GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().color = new Color(5f, 255f, 0f);
     }
 }

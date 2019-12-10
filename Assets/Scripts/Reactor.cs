@@ -7,6 +7,8 @@ public class Reactor : MonoBehaviour
 
     [SerializeField]
     private Sprite[] phases;
+    [SerializeField]
+    private GameObject kermovite;
 
     private SpriteRenderer spriteRenderer;
     private int remainingCrystals;
@@ -32,12 +34,18 @@ public class Reactor : MonoBehaviour
         spriteRenderer.sprite = phases[phases.Length - remainingCrystals];
     }
 
-    public void LooseCrystal()
+    public GameObject LooseCrystal()
     {
-        if (remainingCrystals >= 0)
+        if (remainingCrystals > 1)
         {
+            Debug.Log(total+" "+ remainingCrystals);
             remainingCrystals--;
             UpdateSprite();
+            return kermovite;
+        }
+        else
+        {
+            return null;
         }
     }
     public void RecoverCrystal()
