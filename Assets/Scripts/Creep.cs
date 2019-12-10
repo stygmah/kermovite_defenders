@@ -21,6 +21,7 @@ public class Creep : MonoBehaviour
     public bool resistant;
 
     private bool dying;
+    private bool picking;
     private GameObject kermovite;
     private bool reachedGoal;
 
@@ -33,6 +34,7 @@ public class Creep : MonoBehaviour
         initialSpeed = speed;
         dying = false;
         reachedGoal = false;
+        picking = false;
     }
 
     // Update is called once per frame
@@ -88,11 +90,23 @@ public class Creep : MonoBehaviour
         }
         else if(collision.tag == "kermovite" && kermovite == null)
         {
-
+            if (picking)
+            {
+                return;
+            }
+            picking = true;
+            kermovite = GameManager.Instance.GetAuxKermovite();
+            Destroy(collision.gameObject);
+            if (!reachedGoal)
+            {
+                ReturnToSpawn();
+                reachedGoal = true;
+            }
+            Glow();
         }
         else if (collision.tag == "spawn" && reachedGoal)
         {
-            
+            Debug.Log("reached");
             ReachGoal();
         }
     }
@@ -100,8 +114,9 @@ public class Creep : MonoBehaviour
     {//TODO: Make it into end;
 
         GameManager.Instance.DeadOrGoalCreature(false);
-        Destroy(gameObject);
+        Debug.Log(kermovite != null);
         if (kermovite != null) LooseLife();
+        Destroy(gameObject);
     }
     private void LooseLife()
     {//TODO Clean and move to GameManager
@@ -190,6 +205,7 @@ public class Creep : MonoBehaviour
             dying = true;
             GameManager.Instance.ChangeMoney(money, true);
             GameManager.Instance.DeadOrGoalCreature(true);//TODO:substitute money change and do it in game manager
+            if(kermovite)Instantiate(kermovite, new Vector3(transform.position.x,transform.position.y, -1f), Quaternion.identity);
             Destroy(gameObject);
         }
     }

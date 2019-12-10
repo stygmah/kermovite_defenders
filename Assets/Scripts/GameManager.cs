@@ -42,6 +42,8 @@ public class GameManager : Singleton<GameManager>
     private GameObject specialPanel;
     [SerializeField]
     private GameObject victoryPanel;
+    [SerializeField]
+    private GameObject auxKermovite;
 
 
     private Tower selectedTower;
@@ -433,5 +435,8 @@ public class GameManager : Singleton<GameManager>
         victoryPanel.active = true;
         Time.timeScale = 0;
     }
-
+    public GameObject GetAuxKermovite()
+    {
+        return auxKermovite;
+    }
 }
