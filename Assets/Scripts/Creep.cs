@@ -72,6 +72,7 @@ public class Creep : MonoBehaviour
         if (collision.tag== "goal")
         {
             ReachGoal();
+            collision.gameObject.GetComponent<Reactor>().LooseCrystal();
         }else if(collision.tag == "projectile")
         {
             Hit(collision.gameObject);
