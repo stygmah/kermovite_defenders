@@ -51,4 +51,9 @@ public class Range : MonoBehaviour
             target = collision.GetComponent<Creep>();
         }
     }
+
+    public Creep GetTarget()
+    {
+        return target;
+    }
 }

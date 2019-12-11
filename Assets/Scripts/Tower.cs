@@ -8,6 +8,7 @@ public class Tower : MonoBehaviour
     public Range range;
     public Sprite sprite;
     private SpriteRenderer rangeRenderer;
+    private GameObject barrel;
     public int level;
 
     [SerializeField]
@@ -59,12 +60,13 @@ public class Tower : MonoBehaviour
         level = 1;
         UpdateUpgradePrice();
         UpdateRange();
+        SetBarrel();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        TurnBarrelTowards();
     }
 
     public void Select()
@@ -220,5 +222,25 @@ public class Tower : MonoBehaviour
         return (int)((float)totalSpent * 0.9f);
     }
 
-    //
+    //rotation
+    private void SetBarrel()
+    {
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).tag == "barrel")
+            {
+                barrel = transform.GetChild(i).gameObject;
+            }
+        }
+
+    }
+    private void TurnBarrelTowards()
+    {
+        Creep target = range.GetTarget();
+        if (target != null && barrel != null)
+        {
+            barrel.transform.rotation = Quaternion.Euler(0, 0, rotationTowards(transform.position, target.transform.position));
+        }
+    }
 }
