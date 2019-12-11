@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class Hover : Singleton<Hover>
 {
+    [SerializeField]
+    private GameObject rangeSpriteRenderer;
 
     private SpriteRenderer spriteRenderer;
-    private SpriteRenderer rangeSpriteRenderer;
+    private GameObject range;
+
     // Start is called before the first frame update
 
     void Start()
     {
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        range = Instantiate(rangeSpriteRenderer, Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+        Destroy(range.GetComponent<Range>());
+        range.transform.SetParent(transform);
+        range.transform.position = transform.position;
+        range.GetComponent<SpriteRenderer>().sortingOrder = 2;
     }
 
     // Update is called once per frame
     void Update()
     {
         FollowMouse();
+        range.transform.position = transform.position;
     }
 
     private void FollowMouse()
@@ -29,14 +38,22 @@ public class Hover : Singleton<Hover>
         }
     }
 
-    public void Activate(Sprite sprite)
+    public void Activate(Sprite sprite, GameObject towerPrefab)
     {
-        this.spriteRenderer.sprite = sprite;
+        SetRange(towerPrefab);
+        spriteRenderer.sprite = sprite;
         spriteRenderer.enabled = true;
+        range.active = true;
     }
     public void Deactivate()
     {
         spriteRenderer.enabled = false;
         GameManager.Instance.ClickedBtn = null;
+        range.active = false;
+    }
+    public void SetRange(GameObject tower)
+    {
+        float rangeRadius = tower.GetComponent<Tower>().GetRangeRadius();
+        range.transform.localScale = new Vector3(rangeRadius, rangeRadius, 1f);
     }
 }

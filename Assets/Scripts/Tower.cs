@@ -152,6 +152,10 @@ public class Tower : MonoBehaviour
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
     }
     //Get text methods
+    public float GetRangeRadius()
+    {
+        return rangeRadius;
+    }
     public string GetAttackAndSpeed()
     {
         return "Att: "+damage+" / Sp: "+(15-(cooldown*10));

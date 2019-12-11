@@ -87,7 +87,7 @@ public class GameManager : Singleton<GameManager>
         if (Money >= towerBtn.Price)
         {
             ClickedBtn = towerBtn;
-            Hover.Instance.Activate(towerBtn.Sprite);
+            Hover.Instance.Activate(towerBtn.Sprite, towerBtn.TowerPrefab);
         }
 
     }
