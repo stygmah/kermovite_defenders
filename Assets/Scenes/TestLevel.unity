@@ -1915,10 +1915,10 @@ RectTransform:
   m_Father: {fileID: 1860196824}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 520, y: -34.38}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &155268269
 MonoBehaviour:
@@ -1993,7 +1993,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 60c99aabc19fb4a84abfddf6ddd458b9, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 5360716016176116061, guid: 74b0923d51aeb4b5bb9df0b724772d02,
     type: 3}
-  sprite: {fileID: 21300000, guid: 60c99aabc19fb4a84abfddf6ddd458b9, type: 3}
+  sprite: {fileID: 21300006, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   price: 50
   priceText: {fileID: 505073313}
 --- !u!1001 &158529651
@@ -10503,6 +10503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0229f0d2a542d4ed8ae759885b182366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rangeSpriteRenderer: {fileID: 2703366892895529848, guid: d2d7cffd3df8944b3a0ffb8207e93208,
+    type: 3}
 --- !u!212 &880118619
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11194,7 +11196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &939527803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14994,10 +14996,10 @@ RectTransform:
   m_Father: {fileID: 1860196824}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 440, y: -34.38}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1266344262
 MonoBehaviour:
@@ -15072,7 +15074,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 208c2c2784de341588f75875be9d5cce, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15103,7 +15105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 3980473966191725988, guid: 3479143334a7d47b6be83cf084e65b80,
     type: 3}
-  sprite: {fileID: 21300000, guid: 208c2c2784de341588f75875be9d5cce, type: 3}
+  sprite: {fileID: 21300022, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   price: 30
   priceText: {fileID: 228219256}
 --- !u!4 &1267062992 stripped
@@ -16957,10 +16959,10 @@ RectTransform:
   m_Father: {fileID: 1860196824}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 360, y: -34.38}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404322175
 MonoBehaviour:
@@ -17035,7 +17037,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 30bbaaa6fe76b49e0b003f66fd78c364, type: 3}
+  m_Sprite: {fileID: 21300010, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17066,7 +17068,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 5480637511236716010, guid: 3d824dea31e0d4ab6a9cd37ad054699f,
     type: 3}
-  sprite: {fileID: 21300000, guid: 30bbaaa6fe76b49e0b003f66fd78c364, type: 3}
+  sprite: {fileID: 21300010, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   price: 20
   priceText: {fileID: 57742265}
 --- !u!4 &1404612164 stripped
@@ -18446,10 +18448,10 @@ RectTransform:
   m_Father: {fileID: 1860196824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 280, y: -34.38}
-  m_SizeDelta: {x: 50, y: 50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1543802509
 MonoBehaviour:
@@ -18524,7 +18526,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300002, guid: 30bbaaa6fe76b49e0b003f66fd78c364, type: 3}
+  m_Sprite: {fileID: 21300014, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18555,7 +18557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 5488597735284115237, guid: 26bcf992fc932449d8f40da1ac47c0d3,
     type: 3}
-  sprite: {fileID: 21300002, guid: 30bbaaa6fe76b49e0b003f66fd78c364, type: 3}
+  sprite: {fileID: 21300014, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   price: 15
   priceText: {fileID: 1823097441}
 --- !u!1001 &1550389993

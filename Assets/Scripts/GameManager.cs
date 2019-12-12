@@ -193,7 +193,7 @@ public class GameManager : Singleton<GameManager>
         switch (component.name)
         {
             case "Image":
-                component.GetComponent<Image>().sprite = tower.sprite;
+                component.GetComponent<Image>().sprite = tower.GetFullSprite();
                 break;
             case "TowerNameAndLevel":
                 component.GetComponent<Text>().text = tower.towerName + " - " + tower.level;//change to pub method

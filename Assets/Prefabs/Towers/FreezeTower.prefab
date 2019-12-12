@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 208c2c2784de341588f75875be9d5cce, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,8 +93,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {fileID: 0}
+  sprite: {fileID: 0}
+  level: 0
+  towerName: 
+  upgradeCosts: 00000000000000000000000000000000
   projectile: {fileID: 2080790286994643155, guid: 9e9b55f208bf545dcb833ea617fbbad5,
     type: 3}
   speed: 0
   cooldown: 0
   damage: 0
+  rangeRadius: 0
+  freeze: 0
+  freezeFactor: 0
+  freezeTime: 0
+  laser: 0
+  splash: 0
+  totalSpent: 0

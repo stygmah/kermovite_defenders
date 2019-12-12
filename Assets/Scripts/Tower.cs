@@ -12,6 +12,9 @@ public class Tower : MonoBehaviour
     public int level;
 
     [SerializeField]
+    private Sprite fullSprite;
+
+    [SerializeField]
     public string towerName;
     [SerializeField]
     private int[] upgradeCosts = new int[4];
@@ -43,6 +46,7 @@ public class Tower : MonoBehaviour
 
     private int upgradePrice;
     public int totalSpent;
+    private bool shootingLaser;
 
     // Start is called before the first frame update
     void Start()
@@ -61,12 +65,13 @@ public class Tower : MonoBehaviour
         UpdateUpgradePrice();
         UpdateRange();
         SetBarrel();
+        shootingLaser = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        TurnBarrelTowards();
+        if (!shootingLaser)TurnBarrelTowards();
     }
 
     public void Select()
@@ -117,6 +122,7 @@ public class Tower : MonoBehaviour
     }
     public void LaserShot(Vector3 enemyPosition)
     {
+        shootingLaser = true;
         laserSprite.transform.localScale = new Vector3(laserSprite.transform.localScale.x, Vector2.Distance(transform.position, enemyPosition), 1f);
         StartCoroutine(LaserEffect(rotationTowards(transform.position, enemyPosition), 0.1f));
     }
@@ -149,6 +155,7 @@ public class Tower : MonoBehaviour
             sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, i);
             yield return null;
         }
+        shootingLaser = false;
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
     }
     //Get text methods
@@ -246,5 +253,10 @@ public class Tower : MonoBehaviour
         {
             barrel.transform.rotation = Quaternion.Euler(0, 0, rotationTowards(transform.position, target.transform.position));
         }
+    }
+
+    public Sprite GetFullSprite()
+    {
+        return fullSprite;
     }
 }
