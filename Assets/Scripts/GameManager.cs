@@ -425,12 +425,19 @@ public class GameManager : Singleton<GameManager>
     //End
     public void Victory()
     {
-        victoryPanel.transform.GetChild(0).GetComponent<Text>().text = "Score: " + Score;
-        victoryPanel.active = true;
-        Time.timeScale = 0;
+        if (!gameOver)
+        {
+            victoryPanel.transform.GetChild(0).GetComponent<Text>().text = "Score: " + Score;
+            victoryPanel.active = true;
+            Time.timeScale = 0;
+        }
     }
     public GameObject GetAuxKermovite()
     {
         return auxKermovite;
+    }
+    public void CheckGameOver()
+    {
+        GameOver();
     }
 }

@@ -20,6 +20,7 @@ public class Hover : Singleton<Hover>
         range.transform.SetParent(transform);
         range.transform.position = transform.position;
         range.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        range.active = false;
     }
 
     // Update is called once per frame

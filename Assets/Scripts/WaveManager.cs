@@ -51,7 +51,11 @@ public class WaveManager : Singleton<WaveManager>
         }
         else
         {
-            GameManager.Instance.Victory();
+            if (GameManager.Instance.Health > 0)
+            {
+                GameManager.Instance.Victory();
+            }
+            
         }
     }
 
