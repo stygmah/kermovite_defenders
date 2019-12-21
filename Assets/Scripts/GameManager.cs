@@ -52,7 +52,10 @@ public class GameManager : Singleton<GameManager>
          */
     private void Awake()
     {
-
+        if (SoundController.Instance)
+        {
+            Destroy(SoundController.Instance.gameObject);
+        }
     }
 
     // Start is called before the first frame update
