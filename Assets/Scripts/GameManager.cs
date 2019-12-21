@@ -245,7 +245,7 @@ public class GameManager : Singleton<GameManager>
     {
         betweenWaves = false;
         waveButton.active = false;
-        nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
+        nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;//TODO: Changeto to 50 if group
         creepsKilled = 0;
         float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;
         ActivateDeactivateSpecialButtons();

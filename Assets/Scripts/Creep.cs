@@ -52,16 +52,51 @@ public class Creep : MonoBehaviour
     private void Move()
     {
         transform.position = Vector2.MoveTowards(transform.position, destination, speed*Time.deltaTime);
-
         if (transform.position == destination)
         {
-            if(path !=null && path.Count > 0)
+            if (path !=null && path.Count > 0)
             {
                 GridPosition = path.Peek().GridPosition;
                 destination = path.Pop().WorldPosition;
+                Turn();
             }
         }
     }
+    private void Turn()
+    {
+        float x = transform.position.x - destination.x;
+        float y = transform.position.y - destination.y;
+        if(y == 0)
+        {
+            if (x < 0)
+            {
+                Rotate(270);
+            }
+            else
+            {
+                Rotate(90);
+            }
+        }else
+        {
+            if (y < 0)
+            {
+                Rotate(0);
+            }
+            else
+            {
+                Rotate(180);
+            }
+        }
+
+    }
+    private void Rotate(int angle)
+    {
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,angle),360);
+        transform.GetChild(0).transform.position = new Vector3(transform.position.x, transform.position.y + 0.6f, 1);
+        transform.GetChild(0).transform.rotation = Quaternion.identity;
+    }
+
+
     private void SetPath(Stack<Node> newPath)
     {
         if(newPath != null)
@@ -70,6 +105,7 @@ public class Creep : MonoBehaviour
 
             GridPosition = path.Peek().GridPosition;
             destination = path.Pop().WorldPosition;
+            Turn();
         }
     }
     //collisions
