@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 9154082141756087519}
   - component: {fileID: 2277582843144906567}
   - component: {fileID: 7619229698003214406}
+  - component: {fileID: 4790356401319063371}
   m_Layer: 0
   m_Name: ResistantC
   m_TagString: critter
@@ -151,7 +152,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300016, guid: dce6168eaf1ce4d91aecc1934eaae011, type: 3}
+  m_Sprite: {fileID: 21300026, guid: bd3bc826508cb42078f65e630e8a1dc3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -192,18 +193,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0043963194, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28125, y: 0.6875}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.3, y: 0.24}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 0.7}
+  m_Size: {x: 0.574669, y: 0.7}
   m_EdgeRadius: 0
 --- !u!50 &7619229698003214406
 Rigidbody2D:
@@ -226,3 +227,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4790356401319063371
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8691527215732618463}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 204327f15fe15488685bc76552806d19, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
