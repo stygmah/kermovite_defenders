@@ -13,6 +13,10 @@ public class Tower : MonoBehaviour
 
     [SerializeField]
     private Sprite fullSprite;
+    [SerializeField]
+    private AudioClip shootSound;
+    [Range(0, 1)]
+    public float volume;
 
     [SerializeField]
     public string towerName;
@@ -95,6 +99,7 @@ public class Tower : MonoBehaviour
     }
     public void CreateProjectile(Creep target)
     {
+        GetComponent<AudioSource>().PlayOneShot(shootSound, volume);
         Projectile projectileShot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Projectile>();
         projectileShot.victim = target;
         projectileShot.speed = speed;
