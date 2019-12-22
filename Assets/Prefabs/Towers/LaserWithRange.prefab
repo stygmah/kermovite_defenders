@@ -186,7 +186,7 @@ MonoBehaviour:
   projectile: {fileID: 5805600587438996547, guid: cb8336ff8ced742a0983e72e00479336,
     type: 3}
   speed: 100
-  cooldown: 1
+  cooldown: 1.4
   damage: 20
   rangeRadius: 6
   freeze: 0

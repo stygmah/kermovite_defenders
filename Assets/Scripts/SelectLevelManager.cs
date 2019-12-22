@@ -9,7 +9,6 @@ public class SelectLevelManager : Singleton<SelectLevelManager>
     void Start()
     {
         skipTutorial = false;
-        DontDestroyOnLoad(transform.gameObject);
     }
 
     public void ToggleTutorial()

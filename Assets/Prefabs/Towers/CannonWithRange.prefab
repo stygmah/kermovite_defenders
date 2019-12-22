@@ -105,7 +105,7 @@ MonoBehaviour:
   upgradeCosts: 28000000460000006400000096000000
   projectile: {fileID: 7904930700938554643, guid: f57101f0c26fa42cca2db591cd253855,
     type: 3}
-  speed: 7
+  speed: 20
   cooldown: 0.8
   damage: 5
   rangeRadius: 4
