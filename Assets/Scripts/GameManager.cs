@@ -95,7 +95,7 @@ public class GameManager : Singleton<GameManager>
 
     public void PickTower(TowerBtn towerBtn)
     {
-        if (Money >= towerBtn.Price)
+        if (Money >= towerBtn.Price && !paused)
         {
             ClickedBtn = towerBtn;
             Hover.Instance.Activate(towerBtn.Sprite, towerBtn.TowerPrefab);
@@ -186,6 +186,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void ShowInfoTower(Tower tower)
     {
+        if (paused) return;
         towerInfoPanel.active = true;
         SetTowerInfo(tower);
     }
@@ -254,11 +255,13 @@ public class GameManager : Singleton<GameManager>
     //Create Waves
     public void NextWave()
     {
+        if (paused) return;
         betweenWaves = false;
         waveButton.active = false;
-        nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;//TODO: Changeto to 50 if group
+        nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
+        if (WaveManager.Instance.GetCurrentWave().group) nCreeps = 50; 
         creepsKilled = 0;
-        float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;
+        float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;//TODO: Spawn speed
         ActivateDeactivateSpecialButtons();
         StartCoroutine(LoopWave(nCreeps, speed));
     }
@@ -431,7 +434,7 @@ public class GameManager : Singleton<GameManager>
     //Score
     public int CalculateScore(Wave wave)
     {
-        return wave.isBoss ? wave.reward * creepsKilled * Health : wave.reward * (creepsKilled / 10) * Health; //TODO: add kermovite instead of health
+        return wave.isBoss ? wave.reward * creepsKilled * Health : wave.reward * (creepsKilled / 10) * Health; 
     }
     //End
     public void Victory()
@@ -449,7 +452,13 @@ public class GameManager : Singleton<GameManager>
     //TUTORIAL
     private bool IsTutorialSelected()
     {
-        return !SelectLevelManager.Instance.skipTutorial;
+        if (SelectLevelManager.Instance)
+        {
+            return !SelectLevelManager.Instance.skipTutorial;
+        }else
+        {
+            return false;
+        }
     }
 
     private void StartTutorial()

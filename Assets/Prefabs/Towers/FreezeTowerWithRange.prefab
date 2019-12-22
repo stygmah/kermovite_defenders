@@ -106,7 +106,7 @@ MonoBehaviour:
   projectile: {fileID: 2080790286994643155, guid: 9e9b55f208bf545dcb833ea617fbbad5,
     type: 3}
   speed: 20
-  cooldown: 0.5
+  cooldown: 0.9
   damage: 0
   rangeRadius: 3
   freeze: 1
@@ -114,6 +114,7 @@ MonoBehaviour:
   freezeTime: 2
   laser: 0
   splash: 0
+  splashRange: 0
   totalSpent: 0
 --- !u!82 &2391133373293513793
 AudioSource:

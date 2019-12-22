@@ -181,7 +181,7 @@ public class Tower : MonoBehaviour
         string result = "";
         if (freeze)
         {
-            result = "Freeze time: " + freezeTime + "s";
+            result = "Freeze time: " + (int)(freezeTime*1000) + "ms";
         }
         else if(splash)
         {
