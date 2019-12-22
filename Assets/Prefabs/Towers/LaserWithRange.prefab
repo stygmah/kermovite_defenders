@@ -194,6 +194,7 @@ MonoBehaviour:
   freezeTime: 0
   laser: 1
   splash: 0
+  splashRange: 0
   totalSpent: 0
 --- !u!82 &666363915114087144
 AudioSource:

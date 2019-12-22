@@ -47,10 +47,13 @@ public class Tower : MonoBehaviour
 
     [SerializeField]
     public bool splash;
+    [SerializeField]
+    private float splashRange;
 
     private int upgradePrice;
     public int totalSpent;
     private bool shootingLaser;
+
 
     // Start is called before the first frame update
     void Start()
@@ -109,6 +112,7 @@ public class Tower : MonoBehaviour
         projectileShot.freezeTime = freezeTime;
         projectileShot.tower = this;
         projectileShot.laser = laser;
+        if (splash) projectileShot.splashRange = splashRange;//TODO subsitute in projectile
     }
     private Creep SearchToFreeze()
     {
@@ -175,14 +179,13 @@ public class Tower : MonoBehaviour
     public string GetSpecialText()
     {
         string result = "";
-        Projectile pr = projectile.GetComponent<Projectile>();
         if (freeze)
         {
             result = "Freeze time: " + freezeTime + "s";
         }
-        else if(pr.splash)
+        else if(splash)
         {
-            result = "Splash: " + pr.splashRange * 10;
+            result = "Splash: " + (int) (splashRange * 10);
         }else if (laser)
         {
             result = "Perforates armor";
@@ -228,8 +231,7 @@ public class Tower : MonoBehaviour
         }
         else if (splash)
         {
-            Projectile pr = projectile.GetComponent<Projectile>();
-            pr.splashRange += pr.splashRange * 0.1f;
+            splashRange += splashRange * 0.11f;
         }
         UpdateRange();
     }
