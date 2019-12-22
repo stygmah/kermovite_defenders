@@ -5,6 +5,8 @@ using UnityEngine;
 public class Creep : MonoBehaviour
 {
     [SerializeField]
+    public string nameCreep;
+    [SerializeField]
     private float speed;
     private Stack<Node> path;
     public Pointer GridPosition { get; set; }
@@ -13,8 +15,20 @@ public class Creep : MonoBehaviour
     private int health;
     [SerializeField]
     public int money;
+    [SerializeField]
+    public float spawnRate;
+
+
     private float startHealth;
     private GameObject healthBar;
+    public bool frozen;
+    private float initialSpeed;
+    public bool resistant;
+
+    private bool dying;
+    private bool picking;
+    private GameObject kermovite;
+    private bool reachedGoal;
 
 
     // Start is called before the first frame update
@@ -22,6 +36,10 @@ public class Creep : MonoBehaviour
     {
         startHealth = (float)health;
         healthBar = this.transform.GetChild(0).gameObject;
+        initialSpeed = speed;
+        dying = false;
+        reachedGoal = false;
+        picking = false;
     }
 
     // Update is called once per frame
@@ -39,16 +57,51 @@ public class Creep : MonoBehaviour
     private void Move()
     {
         transform.position = Vector2.MoveTowards(transform.position, destination, speed*Time.deltaTime);
-
         if (transform.position == destination)
         {
-            if(path !=null && path.Count > 0)
+            if (path !=null && path.Count > 0)
             {
                 GridPosition = path.Peek().GridPosition;
                 destination = path.Pop().WorldPosition;
+                Turn();
             }
         }
     }
+    private void Turn()
+    {
+        float x = transform.position.x - destination.x;
+        float y = transform.position.y - destination.y;
+        if(y == 0)
+        {
+            if (x < 0)
+            {
+                Rotate(270);
+            }
+            else
+            {
+                Rotate(90);
+            }
+        }else
+        {
+            if (y < 0)
+            {
+                Rotate(0);
+            }
+            else
+            {
+                Rotate(180);
+            }
+        }
+
+    }
+    private void Rotate(int angle)
+    {
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0,0,angle),360);
+        transform.GetChild(0).transform.position = new Vector3(transform.position.x, transform.position.y + 0.6f, 1);
+        transform.GetChild(0).transform.rotation = Quaternion.identity;
+    }
+
+
     private void SetPath(Stack<Node> newPath)
     {
         if(newPath != null)
@@ -57,6 +110,7 @@ public class Creep : MonoBehaviour
 
             GridPosition = path.Peek().GridPosition;
             destination = path.Pop().WorldPosition;
+            Turn();
         }
     }
     //collisions
@@ -64,15 +118,50 @@ public class Creep : MonoBehaviour
     {
         if (collision.tag== "goal")
         {
-            ReachGoal();
-        }else if(collision.tag == "projectile")
+            //ReachGoal(); TODO REMOVE
+            Reactor reactor = collision.gameObject.GetComponent<Reactor>();
+            kermovite = reactor.LooseCrystal();
+            reachedGoal = true;
+            if(kermovite != null)Glow();
+            ReturnToSpawn();
+        }
+        else if(collision.tag == "projectile")
         {
             Hit(collision.gameObject);
         }
+        else if(collision.tag == "kermovite" && kermovite == null)
+        {
+            if (picking)
+            {
+                return;
+            }
+            picking = true;
+            kermovite = GameManager.Instance.GetAuxKermovite();
+            Destroy(collision.gameObject);
+            if (!reachedGoal)
+            {
+                ReturnToSpawn();
+                reachedGoal = true;
+            }
+            Glow();
+        }
+        else if (collision.tag == "spawn" && reachedGoal)
+        {
+            Debug.Log("reached");
+            ReachGoal();
+        }
     }
     private void ReachGoal()
-    {
+    {//TODO: Make it into end;
+
+        GameManager.Instance.DeadOrGoalCreature(false);
+        Debug.Log(kermovite != null);
+        if (kermovite != null) LooseLife();
         Destroy(gameObject);
+    }
+    private void LooseLife()
+    {//TODO Clean and move to GameManager
+    //TODO subtract 1 kermovite or use life as counter
         if (GameManager.Instance.Health > 0)
         {
             GameManager.Instance.LoseLife();
@@ -85,25 +174,27 @@ public class Creep : MonoBehaviour
     private void Hit(GameObject projectile)
     {
         Projectile pScript = projectile.GetComponent<Projectile>();
-        if (pScript.splash)
-        {
-            pScript.SplashDamage();
-        }
-        else
-        {
-            TakeDamage(projectile, false);
-        }
 
+        if (GetInstanceID() == pScript.victim.GetInstanceID())
+        {
+            hitType(projectile, pScript);
+        }
     }
     public void TakeDamage(GameObject projectile, bool splash)
     {
         Projectile projectileScript = projectile.GetComponent<Projectile>();
 
-        health = health - projectileScript.damage;
+        if (projectileScript.laser)
+        {
+            projectileScript.tower.LaserShot(transform.position);
+        }
+
+        InflictDamage(projectileScript);
+
         if (health <= 0)
         {
             projectileScript.tower.range.CritterDead();
-            Destroy(gameObject);
+            Die();
         }
         else
         {
@@ -114,5 +205,84 @@ public class Creep : MonoBehaviour
         {
             Destroy(projectile);
         }
+    }
+    private IEnumerator Freeze(int freezeFactor, float time)//factor is 1-100
+    {
+        frozen = true;
+        float toFreeze = 1f - (float)freezeFactor/100;
+        speed = speed * toFreeze;
+        yield return new WaitForSeconds(time);
+        frozen = false;
+        speed = initialSpeed;
+    }
+    public void FreezeCreature(int freezeFactor, float time)
+    {
+        if (!frozen)
+        {
+            StartCoroutine(Freeze(freezeFactor, time));
+        }
+    }
+    private void hitType(GameObject projectile, Projectile pScript)
+    {
+        if (pScript.splash)
+        {
+            pScript.SplashDamage();
+        }
+        else if (pScript.freeze)
+        {
+            pScript.freezeDamage(this.gameObject);
+        }
+        else
+        {
+            TakeDamage(projectile, false);
+        }
+    }
+
+    private void Die()
+    {
+
+        if (!dying)
+        {
+            dying = true;
+            GameManager.Instance.ChangeMoney(money, true);
+            GameManager.Instance.DeadOrGoalCreature(true);//TODO:substitute money change and do it in game manager
+            if(kermovite)Instantiate(kermovite, new Vector3(transform.position.x,transform.position.y, -1f), Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    private void InflictDamage(Projectile projectile)
+    {
+        if (projectile.laser && resistant)
+        {
+            health = health - projectile.damage*2;
+        }
+        else if(resistant)
+        {
+            health = health - projectile.damage / 2;
+        }
+        else
+        {
+            health = health - projectile.damage;
+        }
+    }
+
+    public void SetHealth(float multiplier, int wave)
+    {
+        health += ((int)(health * multiplier) + wave);
+    }
+
+    public int GetHealth()
+    {
+        return health;
+    }
+    public void ReturnToSpawn()
+    {
+        path = LevelManager.Instance.GenerateReversePath(new Pointer((int)transform.position.x, (int)transform.position.y));
+        destination = path.Pop().WorldPosition;
+    }
+    private void Glow()
+    {
+        if(GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().color = new Color(5f, 255f, 0f);
     }
 }

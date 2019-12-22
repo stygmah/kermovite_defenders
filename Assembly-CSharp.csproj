@@ -63,6 +63,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\DragonClass.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\EnemyClass.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\FollowCam.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\FoodTracker.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\LetterboxGameDemo.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Parralax.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\PlayerScrollScript.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\TeleportPlayer.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Terrain\LoopingTerrain.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Terrain\TerrainSegment.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Multi-Cam Demo\Scripts\Demo.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Multi-Cam Demo\Scripts\MenuSpin.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Util.cs" />
+    <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />
     <Compile Include="Assets\Scripts\Ax\Ax.cs" />
     <Compile Include="Assets\Scripts\Ax\Node.cs" />
     <Compile Include="Assets\Scripts\Creep.cs" />
@@ -72,29 +88,17 @@
     <Compile Include="Assets\Scripts\Pointer.cs" />
     <Compile Include="Assets\Scripts\Projectile.cs" />
     <Compile Include="Assets\Scripts\Range.cs" />
+    <Compile Include="Assets\Scripts\Reactor.cs" />
     <Compile Include="Assets\Scripts\Scenes.cs" />
+    <Compile Include="Assets\Scripts\SelectLevelManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\SoundController.cs" />
     <Compile Include="Assets\Scripts\Spawn.cs" />
     <Compile Include="Assets\Scripts\TileScript.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
     <Compile Include="Assets\Scripts\TowerBtn.cs" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Masking.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
-    <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface.shader" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
+    <Compile Include="Assets\Scripts\WaveManager.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/guillermobascunanasoler/Games_Dev/kermovite_defenders/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

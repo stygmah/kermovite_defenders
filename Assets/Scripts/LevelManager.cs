@@ -48,4 +48,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         endPath = Ax.GetPath(Spawn.location ,Goal.location);
     }
+
+    public Stack<Node> GenerateReversePath(Pointer start)
+    {
+        return Ax.GetPath(start, Spawn.location);
+    }
+
 }

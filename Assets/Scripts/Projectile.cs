@@ -11,6 +11,10 @@ public class Projectile : MonoBehaviour
     public bool freeze;
     public bool splash;
     public float splashRange;
+    public int freezeFactor;
+    public float freezeTime;
+    public bool laser;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +49,11 @@ public class Projectile : MonoBehaviour
                 creep.TakeDamage(this.gameObject,true);
             }
         }
+        Destroy(this.gameObject);
+    }
+    public void freezeDamage(GameObject creep)
+    {
+        creep.GetComponent<Creep>().FreezeCreature(freezeFactor,freezeTime);
         Destroy(this.gameObject);
     }
 }
