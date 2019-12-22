@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Range.cs" />
     <Compile Include="Assets\Scripts\Reactor.cs" />
     <Compile Include="Assets\Scripts\Scenes.cs" />
+    <Compile Include="Assets\Scripts\SelectLevelManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\SoundController.cs" />
     <Compile Include="Assets\Scripts\Spawn.cs" />

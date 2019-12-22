@@ -41,20 +41,26 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject victoryPanel;
     [SerializeField]
+    private GameObject tutorialMenu;
+    [SerializeField]
     private GameObject auxKermovite;
 
 
     private Tower selectedTower;
-
+    private bool tutorial;
+    public bool inTutorial;
+    private int tutorialIndex;
+    GameObject[] tutorialMessages;
     /*
 
 
          */
     private void Awake()
     {
-        if (SoundController.Instance)
+        if (SoundController.Instance) Destroy(SoundController.Instance.gameObject);
+        if (SelectLevelManager.Instance)
         {
-            Destroy(SoundController.Instance.gameObject);
+            if(SelectLevelManager.Instance.skipTutorial) Destroy(SelectLevelManager.Instance.gameObject);
         }
     }
 
@@ -77,6 +83,8 @@ public class GameManager : Singleton<GameManager>
         //set color
         Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
         colorWaveInfo.color = new Color(colorWaveInfo.color.r, colorWaveInfo.color.g, colorWaveInfo.color.b, 0);
+
+        if (IsTutorialSelected()) StartTutorial();
     }
 
     // Update is called once per frame
@@ -435,5 +443,49 @@ public class GameManager : Singleton<GameManager>
     public GameObject GetAuxKermovite()
     {
         return auxKermovite;
+    }
+
+
+    //TUTORIAL
+    private bool IsTutorialSelected()
+    {
+        return !SelectLevelManager.Instance.skipTutorial;
+    }
+
+    private void StartTutorial()
+    {
+        tutorialMenu.active = true;
+        tutorialMessages = GetTutorialMessages();
+        inTutorial = true;
+        tutorialIndex = 0;
+        tutorialMessages[tutorialIndex].active = true;
+    }
+    private GameObject[] GetTutorialMessages()
+    {
+        GameObject[] tutorialMessages = new GameObject[tutorialMenu.transform.childCount];
+        for (int i = 0; i < tutorialMenu.transform.childCount; i++)
+        {
+            tutorialMessages[i] = tutorialMenu.transform.GetChild(i).gameObject;
+        }
+        return tutorialMessages;
+    }
+    public void NextTutorialMessage()
+    {
+        if (tutorialMessages.Length-1 > tutorialIndex)
+        {
+            tutorialMessages[tutorialIndex].active = false;
+            tutorialIndex++;
+            tutorialMessages[tutorialIndex].active = true;
+        }
+        else
+        {
+            EndTutorial();
+        }
+    }
+    private void EndTutorial()
+    {
+        tutorialMenu.active = false;
+        inTutorial = false;
+        Destroy(SelectLevelManager.Instance.gameObject);
     }
 }
