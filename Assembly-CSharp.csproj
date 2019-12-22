@@ -63,6 +63,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\DragonClass.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\EnemyClass.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\FollowCam.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\FoodTracker.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\LetterboxGameDemo.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Parralax.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\PlayerScrollScript.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\TeleportPlayer.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Terrain\LoopingTerrain.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Game Demo\Scripts\Terrain\TerrainSegment.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Multi-Cam Demo\Scripts\Demo.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Multi-Cam Demo\Scripts\MenuSpin.cs" />
+    <Compile Include="Assets\Auto Letterbox\Demos\Util.cs" />
     <Compile Include="Assets\Auto Letterbox\ForceCameraRatio.cs" />
     <Compile Include="Assets\Scripts\Ax\Ax.cs" />
     <Compile Include="Assets\Scripts\Ax\Node.cs" />
