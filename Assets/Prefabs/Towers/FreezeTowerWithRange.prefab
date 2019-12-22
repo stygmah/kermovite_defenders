@@ -102,7 +102,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 37c33a6e5e45a4838b6dda7a0923aea7, type: 3}
   volume: 0.065
   towerName: Ice Tower
-  upgradeCosts: 320000005000000078000000fa000000
+  upgradeCosts: 2800000033000000440000005b000000
   projectile: {fileID: 2080790286994643155, guid: 9e9b55f208bf545dcb833ea617fbbad5,
     type: 3}
   speed: 20
@@ -110,7 +110,7 @@ MonoBehaviour:
   damage: 0
   rangeRadius: 3
   freeze: 1
-  freezeFactor: 90
+  freezeFactor: 45
   freezeTime: 2
   laser: 0
   splash: 0

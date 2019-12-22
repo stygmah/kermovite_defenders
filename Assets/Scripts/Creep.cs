@@ -5,6 +5,8 @@ using UnityEngine;
 public class Creep : MonoBehaviour
 {
     [SerializeField]
+    public string nameCreep;
+    [SerializeField]
     private float speed;
     private Stack<Node> path;
     public Pointer GridPosition { get; set; }
@@ -13,6 +15,9 @@ public class Creep : MonoBehaviour
     private int health;
     [SerializeField]
     public int money;
+    [SerializeField]
+    public float spawnRate;
+
 
     private float startHealth;
     private GameObject healthBar;

@@ -96,9 +96,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8b2a86ff04a4c9fbe8c9cccd96c6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  health: 50
-  money: 10
+  nameCreep: Fast Crawler
+  speed: 4.1
+  health: 28
+  money: 2
+  spawnRate: 0.5
   frozen: 0
   resistant: 0
 --- !u!61 &4167155072942744861

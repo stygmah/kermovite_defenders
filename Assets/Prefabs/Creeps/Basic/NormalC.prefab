@@ -175,9 +175,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8b2a86ff04a4c9fbe8c9cccd96c6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameCreep: Common Muncher
   speed: 2
-  health: 50
-  money: 10
+  health: 28
+  money: 2
+  spawnRate: 0.9
   frozen: 0
   resistant: 0
 --- !u!61 &6960098967153566424

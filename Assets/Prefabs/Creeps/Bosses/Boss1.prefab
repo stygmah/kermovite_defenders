@@ -95,9 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8b2a86ff04a4c9fbe8c9cccd96c6fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameCreep: Common Lord
   speed: 3
-  health: 500
+  health: 125
   money: 100
+  spawnRate: 0.9
   frozen: 0
   resistant: 1
 --- !u!61 &538655997463051441

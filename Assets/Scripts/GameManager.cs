@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
          */
     private void Awake()
     {
+        pauseMenu.transform.parent.gameObject.active = true;
         if (SoundController.Instance) Destroy(SoundController.Instance.gameObject);
         if (SelectLevelManager.Instance)
         {
@@ -261,9 +262,9 @@ public class GameManager : Singleton<GameManager>
         nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
         if (WaveManager.Instance.GetCurrentWave().group) nCreeps = 50; 
         creepsKilled = 0;
-        float speed = WaveManager.Instance.GetCurrentWave().group ? 0.5f : 0.9f;//TODO: Spawn speed
+        float spawnSpeed = WaveManager.Instance.GetCurrentWave().enemy.GetComponent<Creep>().spawnRate;//TODO: Spawn speed
         ActivateDeactivateSpecialButtons();
-        StartCoroutine(LoopWave(nCreeps, speed));
+        StartCoroutine(LoopWave(nCreeps, spawnSpeed));
     }
 
     private GameObject setCreep()
@@ -370,7 +371,7 @@ public class GameManager : Singleton<GameManager>
         {
 
             waveInfoPanel.transform.GetChild(0).GetComponent<Image>().sprite = next.enemy.GetComponent<SpriteRenderer>().sprite;//FALLA ESTE
-            waveInfoPanel.transform.GetChild(1).GetComponent<Text>().text = "Wave: " + WaveManager.Instance.GetWaveN() + " - " + next.enemy.name;
+            waveInfoPanel.transform.GetChild(1).GetComponent<Text>().text = "Wave: " + WaveManager.Instance.GetWaveN() + " - " + next.enemy.GetComponent<Creep>().nameCreep;
             waveInfoPanel.transform.GetChild(2).GetComponent<Text>().text = next.enemy.GetComponent<Creep>().GetHealth() + "HP - $" + next.reward;
         }
 
@@ -385,7 +386,6 @@ public class GameManager : Singleton<GameManager>
         //TODO: One line conditionals depending on price
         if (SpecialPoints > 0 && betweenWaves)
         {
-            Debug.Log("!");
             specialPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
             specialPanel.transform.GetChild(1).GetComponent<Button>().interactable = true;
         }

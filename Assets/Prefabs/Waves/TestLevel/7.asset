@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c165c084beeac4868aa008c52e0f2484, type: 3}
-  m_Name: 2
+  m_Name: 7
   m_EditorClassIdentifier: 
-  reward: 1
+  reward: 2
   multiplier: 0.1
-  enemy: {fileID: 6389159732205986540, guid: ffd491dccce714bee91bdd62052ed8b3, type: 3}
-  group: 1
+  enemy: {fileID: 8691527215732618463, guid: 0eaf3b784cc094426801429d78f1039a, type: 3}
+  group: 0
   isBoss: 0

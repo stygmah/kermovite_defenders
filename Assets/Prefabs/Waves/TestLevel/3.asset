@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c165c084beeac4868aa008c52e0f2484, type: 3}
   m_Name: 3
   m_EditorClassIdentifier: 
-  reward: 9
+  reward: 1
   multiplier: 0.1
   enemy: {fileID: 45253647203043407, guid: 7833effdae7154db4945fe2cca40f1a2, type: 3}
   group: 0

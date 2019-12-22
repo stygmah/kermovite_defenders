@@ -70,6 +70,7 @@ public class WaveManager : Singleton<WaveManager>
         if (waves.Length > nextWaveN)
         {
             Creep nextCreep = waves[nextWaveN].enemy.GetComponent<Creep>();
+            Debug.Log(multiplier + " " + nextWaveN);
             nextCreep.SetHealth(multiplier, nextWaveN);
         }
 

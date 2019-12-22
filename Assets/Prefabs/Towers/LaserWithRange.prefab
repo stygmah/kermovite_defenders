@@ -182,7 +182,7 @@ MonoBehaviour:
   shootSound: {fileID: 8300000, guid: 454c9c051d77a4b2db0e14b8a34278e9, type: 3}
   volume: 0.48
   towerName: Laser Tower
-  upgradeCosts: 3200000064000000c80000002c010000
+  upgradeCosts: 5000000070000000ae000000e1000000
   projectile: {fileID: 5805600587438996547, guid: cb8336ff8ced742a0983e72e00479336,
     type: 3}
   speed: 100

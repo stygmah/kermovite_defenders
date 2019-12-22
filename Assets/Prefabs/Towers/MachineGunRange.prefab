@@ -179,9 +179,9 @@ MonoBehaviour:
   level: 0
   fullSprite: {fileID: 21300014, guid: 892de230a898a482c898dd11a45a92c8, type: 3}
   shootSound: {fileID: 8300000, guid: d6bfc07f830e54add9e2a010bae6b4e4, type: 3}
-  volume: 0.03
+  volume: 0.04
   towerName: Machine Gun
-  upgradeCosts: 14000000230000003200000078000000
+  upgradeCosts: 0d000000180000002900000052000000
   projectile: {fileID: 3307664994487411430, guid: 83f1639b029204815a8c59bf08f57ee3,
     type: 3}
   speed: 20
@@ -193,6 +193,7 @@ MonoBehaviour:
   freezeTime: 0
   laser: 0
   splash: 0
+  splashRange: 0
   totalSpent: 0
 --- !u!82 &4305275144969182148
 AudioSource:
