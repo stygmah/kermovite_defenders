@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8146666107677489966}
   - component: {fileID: 4167155072942744861}
   - component: {fileID: 5880735665084124472}
-  - component: {fileID: 445866477586333726}
+  - component: {fileID: 911802578795808958}
   m_Layer: 0
   m_Name: FastC
   m_TagString: critter
@@ -150,7 +150,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &445866477586333726
+--- !u!95 &911802578795808958
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0

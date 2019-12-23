@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 9154082141756087519}
   - component: {fileID: 2277582843144906567}
   - component: {fileID: 7619229698003214406}
-  - component: {fileID: 4790356401319063371}
+  - component: {fileID: 7678334617659171989}
   m_Layer: 0
   m_Name: ResistantC
   m_TagString: critter
@@ -229,7 +229,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &4790356401319063371
+--- !u!95 &7678334617659171989
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
