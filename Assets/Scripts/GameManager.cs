@@ -171,6 +171,7 @@ public class GameManager : Singleton<GameManager>
     //OPTIONS
     public void Pause()
     {
+        if (gameOver || victoryPanel.active) return;
         if (paused)
         {
             Time.timeScale = 1;
@@ -513,6 +514,7 @@ public class GameManager : Singleton<GameManager>
     //speed buttons
     public void NormalSpeed()
     {
+        if (gameOver || paused || victoryPanel.active) return;
         Time.timeScale = 1;
         fastForwardBtn.active = true;
         normalSpeedBtn.active = false;
@@ -520,6 +522,7 @@ public class GameManager : Singleton<GameManager>
 
     public void FastForward()
     {
+        if (gameOver || paused || victoryPanel.active) return;
         Time.timeScale = 4;
         fastForwardBtn.active = false;
         normalSpeedBtn.active = true;
