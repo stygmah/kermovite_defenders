@@ -51,6 +51,9 @@ public class GameManager : Singleton<GameManager>
     public bool inTutorial;
     private int tutorialIndex;
     GameObject[] tutorialMessages;
+    private GameObject fastForwardBtn;
+    private GameObject normalSpeedBtn;
+
     /*
 
 
@@ -84,6 +87,14 @@ public class GameManager : Singleton<GameManager>
         //set color
         Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
         colorWaveInfo.color = new Color(colorWaveInfo.color.r, colorWaveInfo.color.g, colorWaveInfo.color.b, 0);
+
+        //set speed buttons
+        fastForwardBtn = GameObject.Find("FastForward");
+        normalSpeedBtn = GameObject.Find("NormalSpeed");
+
+        fastForwardBtn.active = true;
+        normalSpeedBtn.active = false;
+
 
         if (IsTutorialSelected()) StartTutorial();
     }
@@ -295,6 +306,7 @@ public class GameManager : Singleton<GameManager>
     //End Waves
     private void WaveEnd()
     {
+        NormalSpeed();
         PayInterest();
         betweenWaves = true;
         waveButton.active = true;
@@ -496,5 +508,20 @@ public class GameManager : Singleton<GameManager>
         tutorialMenu.active = false;
         inTutorial = false;
         Destroy(SelectLevelManager.Instance.gameObject);
+    }
+
+    //speed buttons
+    public void NormalSpeed()
+    {
+        Time.timeScale = 1;
+        fastForwardBtn.active = true;
+        normalSpeedBtn.active = false;
+    }
+
+    public void FastForward()
+    {
+        Time.timeScale = 4;
+        fastForwardBtn.active = false;
+        normalSpeedBtn.active = true;
     }
 }
