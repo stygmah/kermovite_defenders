@@ -6,13 +6,15 @@ public class LevelManager : Singleton<LevelManager>
 {
     //properties
     public Dictionary<Pointer, TileScript> Tiles { get; set; }
+
     [SerializeField]
     public GameObject spawnPoint;
     [SerializeField]
     public GameObject goalPoint;
+
     public Spawn Spawn { get; set; }
-    //Cambiar por propio
     public Spawn Goal { get; set; }
+
     private Stack<Node> endPath;
     public Stack<Node> EndPath
     {
@@ -38,11 +40,6 @@ public class LevelManager : Singleton<LevelManager>
         Goal = goalPoint.GetComponent<Spawn>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void GeneratePath()
     {

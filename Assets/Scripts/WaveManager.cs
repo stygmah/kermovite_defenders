@@ -17,17 +17,6 @@ public class WaveManager : Singleton<WaveManager>
 
         NextWave();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public Wave GetCurrentWave()
     {
@@ -40,7 +29,6 @@ public class WaveManager : Singleton<WaveManager>
 
     public void NextWave()
     {
-        Debug.Log("nextWaven:" + nextWaveN + " length:" + waves.Length);
         if (waves.Length > nextWaveN)
         {
             SetNextHealth();
@@ -70,7 +58,6 @@ public class WaveManager : Singleton<WaveManager>
         if (waves.Length > nextWaveN)
         {
             Creep nextCreep = waves[nextWaveN].enemy.GetComponent<Creep>();
-            Debug.Log(multiplier + " " + nextWaveN);
             nextCreep.SetHealth(multiplier, nextWaveN);
         }
 

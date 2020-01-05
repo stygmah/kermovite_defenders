@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameCreep: Common Lord
   speed: 3
-  health: 125
+  health: 150
   money: 100
   spawnRate: 0.9
   frozen: 0

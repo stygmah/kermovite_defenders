@@ -36,9 +36,9 @@ public class Reactor : MonoBehaviour
 
     public GameObject LooseCrystal()
     {
+        if (!GameManager.Instance.RemoveFromReactor()) return null;
         if (remainingCrystals > 1)
         {
-            Debug.Log(total+" "+ remainingCrystals);
             remainingCrystals--;
             UpdateSprite();
             return kermovite;
@@ -74,5 +74,6 @@ public class Reactor : MonoBehaviour
         {
             Destroy(k);
         }
+        GameManager.Instance.RestoreReactor();
     }
 }

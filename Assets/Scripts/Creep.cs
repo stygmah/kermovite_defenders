@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Creep : MonoBehaviour
 {
+    //STATS
     [SerializeField]
     public string nameCreep;
     [SerializeField]
     private float speed;
-    private Stack<Node> path;
-    public Pointer GridPosition { get; set; }
-    private Vector3 destination;
     [SerializeField]
     private int health;
     [SerializeField]
@@ -18,16 +16,25 @@ public class Creep : MonoBehaviour
     [SerializeField]
     public float spawnRate;
 
+    //Pathfinding
+    private Stack<Node> path;
+    public Pointer GridPosition { get; set; }
+    private Vector3 destination;
 
+    //status
+    public bool resistant;
+    public bool frozen;
+
+    //kermovite
+    private GameObject kermovite;
+
+
+    //helpers
     private float startHealth;
     private GameObject healthBar;
-    public bool frozen;
     private float initialSpeed;
-    public bool resistant;
-
     private bool dying;
     private bool picking;
-    private GameObject kermovite;
     private bool reachedGoal;
 
 
@@ -147,15 +154,12 @@ public class Creep : MonoBehaviour
         }
         else if (collision.tag == "spawn" && reachedGoal)
         {
-            Debug.Log("reached");
             ReachGoal();
         }
     }
     private void ReachGoal()
     {//TODO: Make it into end;
-
         GameManager.Instance.DeadOrGoalCreature(false);
-        Debug.Log(kermovite != null);
         if (kermovite != null) LooseLife();
         Destroy(gameObject);
     }
@@ -283,6 +287,8 @@ public class Creep : MonoBehaviour
     }
     private void Glow()
     {
-        if(GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().color = new Color(5f, 255f, 0f);
+        Color glow = new Color(0f, 255f, 0f);
+        glow.a = 0.9f; 
+        if (GetComponent<SpriteRenderer>() != null) GetComponent<SpriteRenderer>().color = glow;
     }
 }

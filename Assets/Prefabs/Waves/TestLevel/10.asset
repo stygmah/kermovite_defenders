@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 10
   m_EditorClassIdentifier: 
   reward: 65
-  multiplier: 0.1
+  multiplier: 0.18
   enemy: {fileID: 1631909681008088648, guid: 285dd261982404068b18073f0a1c8f19, type: 3}
   group: 0
   isBoss: 1
