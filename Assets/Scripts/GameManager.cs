@@ -6,24 +6,31 @@ using UnityEngine.UI;
 public class GameManager : Singleton<GameManager>
 {
 
-    [SerializeField]
-    private Text moneyText;
+
+    //Main stats
     public int Money;
     public int Health = 5;
     public float Interest;
     private int SpecialPoints;
     private int Score;
+    private int inReactor;
 
+    //Game states
     private bool gameOver = false;
     public bool paused = false;
 
+    //Tower selector
     public TowerBtn ClickedBtn { get; set; }
 
-    private Creep nextCreep;
+    //Creep/Wave Control
     private int nCreeps;
     private int creepsKilled;
     private bool betweenWaves;
 
+
+    //UI GameObjects
+    [SerializeField]
+    private Text moneyText;
     [SerializeField]
     private GameObject gameOverMenu;
     [SerializeField]
@@ -45,14 +52,17 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject auxKermovite;
 
+    //speed btn
+    private GameObject fastForwardBtn;
+    private GameObject normalSpeedBtn;
 
-    private Tower selectedTower;
-    private bool tutorial;
     public bool inTutorial;
     private int tutorialIndex;
     GameObject[] tutorialMessages;
-    private GameObject fastForwardBtn;
-    private GameObject normalSpeedBtn;
+
+    private Tower selectedTower;
+
+
 
     /*
 
@@ -83,6 +93,7 @@ public class GameManager : Singleton<GameManager>
         SetSpecialPanelText();
         ActivateDeactivateSpecialButtons();
         Score = 0;
+        inReactor = Health;
 
         //set color
         Text colorWaveInfo = endWaveInfo.GetComponent<Text>();
@@ -447,7 +458,7 @@ public class GameManager : Singleton<GameManager>
     //Score
     public int CalculateScore(Wave wave)
     {
-        return wave.isBoss ? wave.reward * creepsKilled * Health : wave.reward * (creepsKilled / 10) * Health; 
+        return wave.isBoss ? wave.reward * creepsKilled * Health + Money : wave.reward * (creepsKilled / 10) * Health + +Money;
     }
     //End
     public void Victory()
@@ -526,5 +537,20 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 4;
         fastForwardBtn.active = false;
         normalSpeedBtn.active = true;
+    }
+    public bool RemoveFromReactor()
+    {
+        if (inReactor > 0)
+        {
+            inReactor--;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }public void RestoreReactor()
+    {
+        inReactor = Health;
     }
 }

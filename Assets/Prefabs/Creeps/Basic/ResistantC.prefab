@@ -177,7 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameCreep: Armored Eater
   speed: 2
-  health: 29
+  health: 30
   money: 2
   spawnRate: 0.9
   frozen: 0

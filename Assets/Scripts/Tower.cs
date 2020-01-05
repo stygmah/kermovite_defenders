@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-
+    //Main func
     public Range range;
     public Sprite sprite;
     private SpriteRenderer rangeRenderer;
     private GameObject barrel;
     public int level;
 
+    //options
     [SerializeField]
     private Sprite fullSprite;
     [SerializeField]
@@ -18,13 +19,11 @@ public class Tower : MonoBehaviour
     [Range(0, 1)]
     public float volume;
 
+    //Stats
     [SerializeField]
     public string towerName;
     [SerializeField]
     private int[] upgradeCosts = new int[4];
-
-    [SerializeField]
-    private GameObject projectile;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -33,26 +32,28 @@ public class Tower : MonoBehaviour
     private int damage;
     [SerializeField]
     private float rangeRadius;
-
     [SerializeField]
     public bool freeze;
     [SerializeField]
     private int freezeFactor;
     [SerializeField]
     private float freezeTime;
-
     [SerializeField]
     private bool laser;
-    private SpriteRenderer laserSprite;
-
     [SerializeField]
     public bool splash;
     [SerializeField]
     private float splashRange;
 
-    private int upgradePrice;
-    public int totalSpent;
+    //helpers
+    [SerializeField]
+    private GameObject projectile;
     private bool shootingLaser;
+    private SpriteRenderer laserSprite;
+    public int totalSpent;
+    private int upgradePrice;
+
+
 
 
     // Start is called before the first frame update
