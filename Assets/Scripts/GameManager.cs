@@ -127,7 +127,6 @@ public class GameManager : Singleton<GameManager>
     }
 
 
-    //TODO: Start methods, group into set values, set texts, etc
 
     public void BuyTower(TowerBtn towerBtn)
     {
@@ -285,7 +284,7 @@ public class GameManager : Singleton<GameManager>
         nCreeps = WaveManager.Instance.GetCurrentWave().isBoss ? 1 : 30;
         if (WaveManager.Instance.GetCurrentWave().group) nCreeps = 50; 
         creepsKilled = 0;
-        float spawnSpeed = WaveManager.Instance.GetCurrentWave().enemy.GetComponent<Creep>().spawnRate;//TODO: Spawn speed
+        float spawnSpeed = WaveManager.Instance.GetCurrentWave().enemy.GetComponent<Creep>().spawnRate;
         ActivateDeactivateSpecialButtons();
         StartCoroutine(LoopWave(nCreeps, spawnSpeed));
     }
@@ -377,7 +376,7 @@ public class GameManager : Singleton<GameManager>
         string points = "Points: $" + wave.reward +
                " * Killed Units:" + creepsKilled +
                ":10 * Kermovite: " + Health +
-               " = "+ CalculateScore(wave);//TODO: Replace Kermovite;
+               " = "+ CalculateScore(wave);
         string special = wave.isBoss ? "Earned 2 Special Points!": "";
         endWaveInfo.GetComponent<Text>().text = interestMsg + "\n" + points + "\n" + special;
     }
@@ -407,7 +406,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void ActivateDeactivateSpecialButtons()
     {
-        //TODO: One line conditionals depending on price
+
         if (SpecialPoints > 0 && betweenWaves)
         {
             specialPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;

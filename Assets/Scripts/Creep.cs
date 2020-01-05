@@ -125,7 +125,6 @@ public class Creep : MonoBehaviour
     {
         if (collision.tag== "goal")
         {
-            //ReachGoal(); TODO REMOVE
             Reactor reactor = collision.gameObject.GetComponent<Reactor>();
             kermovite = reactor.LooseCrystal();
             reachedGoal = true;
@@ -158,14 +157,13 @@ public class Creep : MonoBehaviour
         }
     }
     private void ReachGoal()
-    {//TODO: Make it into end;
+    {
         GameManager.Instance.DeadOrGoalCreature(false);
         if (kermovite != null) LooseLife();
         Destroy(gameObject);
     }
     private void LooseLife()
-    {//TODO Clean and move to GameManager
-    //TODO subtract 1 kermovite or use life as counter
+    {
         if (GameManager.Instance.Health > 0)
         {
             GameManager.Instance.LoseLife();
@@ -249,7 +247,7 @@ public class Creep : MonoBehaviour
         {
             dying = true;
             GameManager.Instance.ChangeMoney(money, true);
-            GameManager.Instance.DeadOrGoalCreature(true);//TODO:substitute money change and do it in game manager
+            GameManager.Instance.DeadOrGoalCreature(true);
             if(kermovite)Instantiate(kermovite, new Vector3(transform.position.x,transform.position.y, -1f), Quaternion.identity);
             Destroy(gameObject);
         }

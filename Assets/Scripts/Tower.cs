@@ -113,7 +113,7 @@ public class Tower : MonoBehaviour
         projectileShot.freezeTime = freezeTime;
         projectileShot.tower = this;
         projectileShot.laser = laser;
-        if (splash) projectileShot.splashRange = splashRange;//TODO subsitute in projectile
+        if (splash) projectileShot.splashRange = splashRange;
     }
     private Creep SearchToFreeze()
     {
