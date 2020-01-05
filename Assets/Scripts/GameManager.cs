@@ -373,7 +373,7 @@ public class GameManager : Singleton<GameManager>
     private void SetEndInfoMessage()
     {
         Wave wave = WaveManager.Instance.GetCurrentWave();
-        string interestMsg = "Interest: $" + Money + " x " + (int)(Interest*100f) + "% = $"+ (int)(Money * Interest);
+        string interestMsg = "Interest: $" + Money + " x " + ((int)(Interest*100f))+1 + "% = $"+ (int)(Money * Interest);
         string points = "Points: $" + wave.reward +
                " * Killed Units:" + creepsKilled +
                ":10 * Kermovite: " + Health +
