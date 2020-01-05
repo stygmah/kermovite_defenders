@@ -98,11 +98,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameCreep: Fast Crawler
   speed: 4.1
-  health: 28
+  health: 27
   money: 2
   spawnRate: 0.5
-  frozen: 0
   resistant: 0
+  frozen: 0
 --- !u!61 &4167155072942744861
 BoxCollider2D:
   m_ObjectHideFlags: 0

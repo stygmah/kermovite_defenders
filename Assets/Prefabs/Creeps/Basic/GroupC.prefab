@@ -101,8 +101,8 @@ MonoBehaviour:
   health: 28
   money: 1
   spawnRate: 0.45
-  frozen: 0
   resistant: 0
+  frozen: 0
 --- !u!61 &5840915255961841080
 BoxCollider2D:
   m_ObjectHideFlags: 0
